@@ -2,6 +2,12 @@ import { combineReducers } from 'redux-immutable';
 import { fromJS, List } from 'immutable';
 import * as types from '../constants';
 
+/**
+ * [exampleData]
+ * @param  {[type]} [state=fromJS({})] [description]
+ * @param  {[object]} action             [description]
+ * @return {[object]}                    [description]
+ */
 const exampleData = (state = fromJS({}), action) => {
   switch (action.type) {
     case types.EXAMPLE_RESPONSE:
@@ -11,6 +17,9 @@ const exampleData = (state = fromJS({}), action) => {
   }
 };
 
+/**
+ * @return collection of reducers
+ */
 const exampleReducer = combineReducers({
   exampleData
 });

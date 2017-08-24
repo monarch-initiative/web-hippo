@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux-immutable';
-import { fromJS, List } from 'immutable';
-import * as types from '../constants';
 
+/**
+ * [getExampleData]
+ * @param  {[object]} state []
+ * @return {[object]}       []
+ */
 export const getExampleData = state => {
   return state.get('exampleData');
 };
