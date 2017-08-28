@@ -1,0 +1,10 @@
+# ignore these files and folders
+.git
+node_modules
+public
+src
+.dockerignore
+.gitignore
+package.json
+README.md
+yarn.lock
