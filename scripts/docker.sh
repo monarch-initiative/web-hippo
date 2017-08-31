@@ -12,9 +12,9 @@ if [ "$PART_OF_BRANCH_NAME" == "develop" ] || [ "$PART_OF_BRANCH_NAME" == "uat" 
         rm -rf build
 
         if [ "$PART_OF_BRANCH_NAME" == "uat" ]; then
-            REACT_APP_GATRACKID=UA-81359825-2 REACT_APP_BASE_URL=/api/gw-messenger/v1 CI=true npm run build > build.txt 2>&1
+            REACT_APP_GATRACKID=UA-81359825-2 REACT_APP_BASE_URL=/api/gw-$clean_app_name/v1 CI=true npm run build > build.txt 2>&1
         elif [ "$PART_OF_BRANCH_NAME" == "master" ]; then
-            REACT_APP_GATRACKID=UA-81359825-3 REACT_APP_BASE_URL=/api/gw-messenger/v1 CI=true npm run build > build.txt 2>&1
+            REACT_APP_GATRACKID=UA-81359825-3 REACT_APP_BASE_URL=/api/gw-$clean_app_name/v1 CI=true npm run build > build.txt 2>&1
         else
             REACT_APP_BASE_URL=/api/gw-$clean_app_name/v1 CI=true npm run build > build.txt 2>&1
         fi
