@@ -6,7 +6,6 @@ import toJS from '../helpers/toJS';
 
 class ExampleContainer extends Component {
   render() {
-    console.log(this.props.exampleData);
     return (
       <div className="container">
         <div className="header clearfix">
@@ -62,7 +61,6 @@ class ExampleContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const exampleData = selectors.getMyExampleData(state);
-  console.log('e.g.', exampleData);
   return {
     exampleData
   };
