@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reducer from './reducers';
 import './index.css';
-import { getCurrentResponse } from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 // logger

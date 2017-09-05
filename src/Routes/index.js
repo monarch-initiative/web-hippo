@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Route, HashRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom';
 import ExampleContainer from '../containers/ExampleContainer';
 
 class Routes extends Component {
   render() {
     return (
-      <HashRouter >
+      <HashRouter>
         <Route path="/" component={ExampleContainer} />
-      </HashRouter >
+      </HashRouter>
     );
   }
 }

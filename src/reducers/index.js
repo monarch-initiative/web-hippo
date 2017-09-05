@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux-immutable';
-import { fromJS, List } from 'immutable';
+import { fromJS } from 'immutable';
 import * as types from '../constants';
 
 /**
