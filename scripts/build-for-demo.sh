@@ -10,7 +10,7 @@ rm -rf build
 sed -i 's#"homepage": "/'$clean_app_name'"#"homepage": "/demo/'$bamboo_planRepository_name'/'"$branch_name"'"#g' package.json
 cat package.json
 
-REACT_APP_BASE_URL=/api/web-server CI=true npm run build
+REACT_APP_BASE_URL=/api/web-server REACT_APP_PASSPORT_URL=/demo/web-passport/develop CI=true npm run build
 mkdir -p $branch_name
 cp -R build/* $branch_name
 
