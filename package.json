@@ -2,6 +2,7 @@
   "name": "web-base",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "create-react-class": "^15.6.0",
@@ -27,7 +28,8 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
     "styled-components": "^2.1.1",
-    "web-component-authentication": "GenomeOne/web-component-authentication.git#master"
+    "web-component-authentication":
+      "GenomeOne/web-component-authentication.git#master"
   },
   "scripts": {
     "start": "REACT_APP_BASE_URL=http://localhost:4000 react-scripts start",
