@@ -5,6 +5,7 @@ import ExampleContainer from '../containers/ExampleContainer';
 
 // const EnsureLoggedInContainerWithRouter = withRouter(EnsureLoggedInContainer);
 
+/* eslint react/prefer-stateless-function: "off" */
 class Routes extends Component {
   render() {
     return (

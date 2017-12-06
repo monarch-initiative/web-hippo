@@ -1,8 +1,8 @@
 {
+  "homepage": ".",
   "name": "web-base",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "create-react-class": "^15.6.0",
@@ -13,6 +13,7 @@
     "lodash.get": "^4.4.2",
     "moment": "^2.18.1",
     "normalizr": "^3.2.3",
+    "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.4",
@@ -28,16 +29,20 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
     "styled-components": "^2.1.1",
-    "web-component-authentication":
-      "GenomeOne/web-component-authentication.git#master"
+    "web-component-authentication": "GenomeOne/web-component-authentication.git#master"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:4000 react-scripts start",
+    "start": "REACT_APP_BASE_URL=http://localhost:4000 REACT_APP_PASSPORT_URL=http://localhost:3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "react-test-renderer": "^15.6.1",
     "redux-mock-store": "^1.2.3"
   }
