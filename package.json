@@ -21,6 +21,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
+    "redux-api-middleware": "^2.0.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
@@ -28,11 +29,11 @@
     "reselect": "^3.0.1",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
-    "styled-components": "^2.1.1",
-    "web-component-authentication": "GenomeOne/web-component-authentication.git#master"
+    "styled-components": "^2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:4000 REACT_APP_PASSPORT_URL=http://localhost:3002 react-scripts start",
+    "start":
+      "REACT_APP_BASE_URL=http://localhost:4000/publications REACT_APP_PASSPORT_URL=http://localhost:3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -1,18 +1,11 @@
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import * as types from '../constants';
-import { authReducer } from 'web-component-authentication';
 
-/**
- * [exampleData]
- * @param  {[type]} [state=fromJS({})] [description]
- * @param  {[object]} action             [description]
- * @return {[object]}                    [description]
- */
-const exampleData = (state = fromJS({}), action) => {
+const publications = (state = fromJS({}), action) => {
   switch (action.type) {
-    case types.EXAMPLE_RESPONSE:
-      return state.merge(fromJS(action.data));
+    case types.FETCH_PUBLICATIONS_SUCCESS:
+      return state.merge(fromJS({ ...action.payload }));
     default:
       return state;
   }
@@ -22,8 +15,7 @@ const exampleData = (state = fromJS({}), action) => {
  * @return collection of reducers
  */
 const exampleReducer = combineReducers({
-  exampleData,
-  authentication: authReducer
+  publications
 });
 
 export default exampleReducer;
