@@ -1,13 +1,11 @@
 import { createSelector } from 'reselect';
 
-/**
- * [getExampleData]
- * @param  {[object]} state []
- * @return {[object]}       []
- */
-export const getExampleData = state => state.get('exampleData');
+const publicationItems = state => state.getIn(['publications', 'items']);
 
-export const getMyExampleData = createSelector(
-  [getExampleData],
-  exampleData => exampleData,
+export const getPublicationItems = createSelector(
+  [publicationItems],
+  items => items
 );
+
+export const isLoading = state => state.getIn(['publications', 'isLoading']);
+export const isError = state => state.getIn(['publications', 'error']);

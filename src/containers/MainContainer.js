@@ -4,21 +4,33 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import toJS from '../helpers/toJS';
-import SearchContainer from './SearchContainer';
-import PublicationsContainer from './PublicationsContainer';
+import Publications from '../components/Publications';
+import Home from '../components/Home';
+import SearchBar from '../components/SearchBar';
+import ErrorAlert from '../components/ErrorAlert';
 
 class MainContainer extends Component {
+  componentDidMount() {
+    this.props.fetchPublications();
+  }
+
   render() {
+    const { isLoading, isError } = this.props;
     return (
-      <div>
-        <SearchContainer />
-        <PublicationsContainer />
-      </div>
+      <Home>
+        <SearchBar loading={isLoading} />
+        <ErrorAlert error={isError} />
+        <Publications {...this.props} />
+      </Home>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  publicationItems: selectors.getPublicationItems(state),
+  isLoading: selectors.isLoading(state),
+  isError: selectors.isError(state)
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...actions }, dispatch);
