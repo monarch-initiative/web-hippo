@@ -8,17 +8,30 @@ import Publications from '../components/Publications';
 import Home from '../components/Home';
 import SearchBar from '../components/SearchBar';
 import ErrorAlert from '../components/ErrorAlert';
+import queryString from 'query-string';
 
 class MainContainer extends Component {
+  handleFetchPublication = searchQuery => {
+    var parsed = queryString.parse(searchQuery);
+    if (parsed.condition && parsed.genes) {
+      this.props.fetchPublications({ ...parsed });
+    }
+  };
+
   componentDidMount() {
-    this.props.fetchPublications();
+    this.handleFetchPublication(this.props.location.search);
   }
 
   render() {
-    const { isLoading, isError } = this.props;
+    const { isLoading, isError, history, location } = this.props;
     return (
       <Home>
-        <SearchBar loading={isLoading} />
+        <SearchBar
+          history={history}
+          location={location}
+          loading={isLoading}
+          onSearch={this.handleFetchPublication}
+        />
         <ErrorAlert error={isError} />
         <Publications {...this.props} />
       </Home>

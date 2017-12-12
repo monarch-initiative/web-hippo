@@ -5,7 +5,7 @@ import * as types from '../constants';
 const initialState = {
   isLoading: false,
   error: false,
-  items: []
+  items: null
 };
 const publications = (state = fromJS(initialState), action) => {
   switch (action.type) {
