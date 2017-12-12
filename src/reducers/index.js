@@ -10,6 +10,7 @@ const initialState = {
 const publications = (state = fromJS(initialState), action) => {
   switch (action.type) {
     case types.FETCH_PUBLICATIONS_REQUEST:
+    case types.FETCH_PUBLICATIONS_FAILURE:
       return action.error
         ? state.set('isLoading', false).set('error', true)
         : state.set('isLoading', true).set('error', false);
