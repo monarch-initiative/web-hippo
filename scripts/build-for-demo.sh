@@ -25,7 +25,7 @@ scp -i ~/.ssh/sandbox.pem -r $branch_name/. ec2-user@13.55.2.207:/mnt/demo/$app_
 # Build for sandbox, but pointing to UAT
 rm -rf build
 
-REACT_APP_BASE_URL=http://13.210.236.9:9080  CI=true npm run build > build.txt 2>&1
+REACT_APP_BASE_URL=https://phenomics-dev.genome.one/search-engine  CI=true npm run build > build.txt 2>&1
 mkdir -p $branch_name
 cp -R build/* $branch_name
 
