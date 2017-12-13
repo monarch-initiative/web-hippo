@@ -9,7 +9,7 @@ export function post(endpoint, body, types) {
     [RSAA]: {
       endpoint: `${process.env.REACT_APP_BASE_URL}${endpoint}`,
       method: 'POST',
-      body: body,
+      body: JSON.stringify(body),
       headers: headers,
       types: types
     }
