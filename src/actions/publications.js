@@ -1,13 +1,6 @@
 import * as types from '../constants';
 import { post } from '../api';
-
-export const splitSearchQuery = searchQuery => {
-  let searchArray = searchQuery
-    .split(/[\s,]+/)
-    .map(item => item.trim())
-    .filter(Boolean);
-  return searchArray;
-};
+import { splitSearchQuery } from '../helpers';
 
 export const fetchPublications = ({ genes, condition }) => {
   return dispatch => {

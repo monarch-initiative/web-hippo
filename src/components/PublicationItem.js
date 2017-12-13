@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Segment, Label } from 'semantic-ui-react';
 import moment from 'moment';
 import Authors from './Authors';
+import ArticleAbstractViewer from './ArticleAbstractViewer';
 
 export default function PublicationItem({
   articleAbstract,
@@ -9,20 +10,23 @@ export default function PublicationItem({
   articleTitle,
   datePublished,
   authors,
+  annotations,
   pmid
 }) {
   return (
     <Segment>
       <Label color="teal" ribbon>
-        {articleRank}
+        {moment(datePublished).format('LL')}
       </Label>
       <Header>{articleTitle}</Header>
       <Authors authors={authors} />
 
-      <p>{articleAbstract}</p>
+      <ArticleAbstractViewer
+        articleAbstract={articleAbstract}
+        annotations={annotations}
+      />
 
       <Label.Group size="tiny">
-        <Label>{moment(datePublished).format('LL')}</Label>
         <Label>PMID: {pmid}</Label>
       </Label.Group>
     </Segment>
