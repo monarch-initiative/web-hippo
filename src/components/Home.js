@@ -3,7 +3,7 @@ import { Container, Header } from 'semantic-ui-react';
 
 export default function Home({ children }) {
   return (
-    <Container style={{ marginTop: '7em' }}>
+    <Container text style={{ marginTop: '7em' }}>
       <Header as="h1">Pubmed Browser</Header>
       {children}
     </Container>
