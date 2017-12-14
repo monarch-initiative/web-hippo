@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar';
-import { Container, Header } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 export default function Home({ children }) {
   return (
