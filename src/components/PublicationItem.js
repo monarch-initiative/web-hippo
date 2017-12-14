@@ -15,7 +15,7 @@ export default function PublicationItem({
   pmid
 }) {
   return (
-    <Segment>
+    <Segment style={{ marginBottom: 40 }}>
       <Label ribbon>
         {publication && publication.title}
         <Icon name="calendar" style={{ marginLeft: 5, marginRight: 3 }} />
