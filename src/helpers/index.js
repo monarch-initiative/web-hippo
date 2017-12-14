@@ -10,12 +10,9 @@ export const splitSearchQuery = searchQuery => {
 
 export const getOffsetsArray = annotations => {
   if (!annotations || !Array.isArray(annotations.genes)) return [];
-  const result = sortBy(
-    flatten(annotations.genes.map(gene => [...gene.offsets])),
-    ['startIndex']
-  );
-  console.log(result);
-  return result;
+  return sortBy(flatten(annotations.genes.map(gene => [...gene.offsets])), [
+    'startIndex'
+  ]);
 };
 
 export const splitTextByOffsets = (text, offsets) => {

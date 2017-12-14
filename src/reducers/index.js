@@ -15,7 +15,7 @@ const publications = (state = fromJS(initialState), action) => {
         ? state.set('isLoading', false).set('error', true)
         : state.set('isLoading', true).set('error', false);
     case types.FETCH_PUBLICATIONS_SUCCESS:
-      return state.set('isLoading', false).mergeDeep({ items: action.payload });
+      return state.set('isLoading', false).set('items', fromJS(action.payload));
     default:
       return state;
   }
