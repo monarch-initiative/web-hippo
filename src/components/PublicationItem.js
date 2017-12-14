@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Segment, Label } from 'semantic-ui-react';
+import { Header, Segment, Label, Icon } from 'semantic-ui-react';
 import moment from 'moment';
 import Authors from './Authors';
 import ArticleAbstractViewer from './ArticleAbstractViewer';
@@ -11,13 +11,17 @@ export default function PublicationItem({
   datePublished,
   authors,
   annotations,
+  publication,
   pmid
 }) {
   return (
     <Segment>
-      <Label color="teal" ribbon>
+      <Label ribbon>
+        {publication && publication.title}
+        <Icon name="calendar" style={{ marginLeft: 5, marginRight: 3 }} />
         {moment(datePublished).format('LL')}
       </Label>
+
       <Header>{articleTitle}</Header>
       <Authors authors={authors} />
 
