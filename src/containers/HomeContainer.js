@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import queryString from 'query-string';
 import * as actions from '../actions';
 import * as selectors from '../selectors';
 import toJS from '../helpers/toJS';
-import Publications from '../components/Publications';
 import Home from '../components/Home';
-import SearchBar from '../components/SearchBar';
-import ErrorAlert from '../components/ErrorAlert';
-import queryString from 'query-string';
 
-class MainContainer extends Component {
+class HomeContainer extends Component {
   handleFetchPublication = searchQuery => {
     var parsed = queryString.parse(searchQuery);
     if (parsed.condition && parsed.genes) {
@@ -23,18 +20,11 @@ class MainContainer extends Component {
   }
 
   render() {
-    const { isLoading, isError, history, location } = this.props;
     return (
-      <Home>
-        <SearchBar
-          history={history}
-          location={location}
-          loading={isLoading}
-          onSearch={this.handleFetchPublication}
-        />
-        <ErrorAlert error={isError} />
-        <Publications {...this.props} />
-      </Home>
+      <Home
+        {...this.props}
+        handleFetchPublication={this.handleFetchPublication}
+      />
     );
   }
 }
@@ -49,5 +39,5 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...actions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  toJS(MainContainer)
+  toJS(HomeContainer)
 );
