@@ -23,6 +23,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
+    "redux-form": "^7.1.1",
     "redux-api-middleware": "^2.0.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable": "^4.0.0",
@@ -34,7 +35,8 @@
     "styled-components": "^2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:4000/publications react-scripts start",
+    "start":
+      "REACT_APP_BASE_URL=https://phenomics-dev.genome.one/search-engine react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

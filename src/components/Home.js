@@ -1,9 +1,9 @@
 import React from 'react';
 import NavBar from './NavBar';
-import { Container } from 'semantic-ui-react';
+import { Container, Message } from 'semantic-ui-react';
 import SearchBar from '../components/SearchBar';
-import ErrorAlert from '../components/ErrorAlert';
 import Publications from '../components/Publications';
+import SubscriptionContainer from '../containers/SubscriptionContainer';
 
 export default function Home({
   isLoading,
@@ -23,12 +23,23 @@ export default function Home({
           loading={isLoading}
           onSearch={handleFetchPublication}
         />
-        <ErrorAlert error={isError} />
-        <Publications
-          isLoading={isLoading}
-          isError={isError}
-          publicationItems={publicationItems}
-        />
+        {isError && (
+          <Message
+            negative
+            header="We're sorry we can't browse the library at the moment"
+            content="Please try again later."
+          />
+        )}
+        {!isLoading &&
+          !isError &&
+          Array.isArray(publicationItems) && (
+            <div>
+              <SubscriptionContainer
+                header={`Result(${publicationItems.length})`}
+              />
+              <Publications publicationItems={publicationItems} />
+            </div>
+          )}
       </Container>
     </div>
   );

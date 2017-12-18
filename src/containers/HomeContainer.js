@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
 import * as actions from '../actions';
-import * as selectors from '../selectors';
+import * as publicationSelectors from '../selectors/publications';
 import toJS from '../helpers/toJS';
 import Home from '../components/Home';
 
@@ -30,9 +30,9 @@ class HomeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  publicationItems: selectors.getPublicationItems(state),
-  isLoading: selectors.isLoading(state),
-  isError: selectors.isError(state)
+  publicationItems: publicationSelectors.getPublicationItems(state),
+  isLoading: publicationSelectors.isLoading(state),
+  isError: publicationSelectors.isError(state)
 });
 
 const mapDispatchToProps = dispatch =>
