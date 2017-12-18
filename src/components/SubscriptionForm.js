@@ -76,7 +76,7 @@ const SubscriptionForm = props => {
       />
       {isSubscribed ? (
         <Message
-          success
+          positive
           header="Subscribed successfully"
           content="Subscription is submitted successfully."
         />
