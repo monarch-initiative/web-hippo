@@ -72,9 +72,9 @@ export const getGeneseFromAnnotations = publications => {
 
   return sortBy(
     geneSymbols.reduce((result, gene) => {
-      let idx = result.findIndex(item => item.symbol === gene.symbol);
-      idx > -1
-        ? result[idx].publications.push(...gene.publications)
+      let index = result.findIndex(item => item.symbol === gene.symbol);
+      index > -1
+        ? result[index].publications.push(...gene.publications)
         : result.push(gene);
       return result;
     }, []),
