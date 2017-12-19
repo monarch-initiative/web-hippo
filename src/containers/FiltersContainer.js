@@ -7,8 +7,16 @@ import GeneFilters from '../components/GeneFilters';
 import * as filterSelectors from '../selectors/filters';
 
 class FiltersContainer extends Component {
+  handleFilterChange = ({ value, checked }) =>
+    this.props.setGeneSelectionInFilters(value, checked);
+
   render() {
-    return <GeneFilters filters={this.props.filters} />;
+    return (
+      <GeneFilters
+        filters={this.props.filters}
+        onFilterChange={this.handleFilterChange}
+      />
+    );
   }
 }
 

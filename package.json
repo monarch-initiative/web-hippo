@@ -9,7 +9,6 @@
     "cuid": "^1.3.8",
     "fetch-mock": "^5.12.1",
     "immutable": "^3.8.1",
-    "lodash.countby": "^4.6.0",
     "lodash.debounce": "^4.0.8",
     "lodash.flatten": "^4.4.0",
     "lodash.get": "^4.4.2",
@@ -36,7 +35,8 @@
     "styled-components": "^2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=https://phenomics-dev.genome.one/search-engine react-scripts start",
+    "start":
+      "REACT_APP_BASE_URL=https://phenomics-dev.genome.one/search-engine react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

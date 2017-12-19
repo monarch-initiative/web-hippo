@@ -30,7 +30,7 @@ class HomeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  publicationItems: publicationSelectors.getPublicationItems(state),
+  publicationItems: publicationSelectors.filteredPublicationItems(state),
   isLoading: publicationSelectors.isLoading(state),
   isError: publicationSelectors.isError(state)
 });

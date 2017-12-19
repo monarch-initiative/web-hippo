@@ -1,5 +1,4 @@
-import { sortBy, flatten, countBy } from 'lodash';
-import { normalize, schema } from 'normalizr';
+import { sortBy, flatten } from 'lodash';
 
 export const splitSearchQuery = searchQuery => {
   let searchArray = searchQuery
@@ -65,7 +64,8 @@ export const getGeneseFromAnnotations = publications => {
     publications.map(p =>
       p.annotations.genes.map(gene => ({
         symbol: gene.geneSymbol,
-        publications: [p.pmid]
+        publications: [p.pmid],
+        selected: false
       }))
     )
   );
