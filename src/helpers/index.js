@@ -1,4 +1,5 @@
-import { sortBy, flatten } from 'lodash';
+import { sortBy, flatten, countBy } from 'lodash';
+import { normalize, schema } from 'normalizr';
 
 export const splitSearchQuery = searchQuery => {
   let searchArray = searchQuery
@@ -55,4 +56,28 @@ export const splitTextByOffsets = (text, offsets) => {
   }
 
   return result;
+};
+
+export const getGeneseFromAnnotations = publications => {
+  if (!Array.isArray(publications)) return [];
+
+  const geneSymbols = flatten(
+    publications.map(p =>
+      p.annotations.genes.map(gene => ({
+        symbol: gene.geneSymbol,
+        publications: [p.pmid]
+      }))
+    )
+  );
+
+  return sortBy(
+    geneSymbols.reduce((result, gene) => {
+      let idx = result.findIndex(item => item.symbol === gene.symbol);
+      idx > -1
+        ? result[idx].publications.push(...gene.publications)
+        : result.push(gene);
+      return result;
+    }, []),
+    [g => -g.publications.length]
+  );
 };
