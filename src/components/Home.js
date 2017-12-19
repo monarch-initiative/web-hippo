@@ -45,16 +45,18 @@ export default function Home({
                 />
               </Grid.Column>
             </Grid.Row>,
-            <Grid.Row key="2">
-              <Grid.Column width={4}>
-                <FiltersContainer />
-              </Grid.Column>
-              <Grid.Column width={8} style={{ marginTop: '2em' }}>
-                <Container text>
-                  <Publications publicationItems={publicationItems} />
-                </Container>
-              </Grid.Column>
-            </Grid.Row>
+            publicationItems.length > 0 && (
+              <Grid.Row key="2">
+                <Grid.Column width={4}>
+                  <FiltersContainer />
+                </Grid.Column>
+                <Grid.Column width={8} style={{ marginTop: '2em' }}>
+                  <Container text>
+                    <Publications publicationItems={publicationItems} />
+                  </Container>
+                </Grid.Column>
+              </Grid.Row>
+            )
           ]}
       </Grid>
     </div>
