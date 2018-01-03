@@ -45,13 +45,19 @@ class SearchBar extends Component {
           >
             <input />
             <Select
+              style={{ marginLeft: 8 }}
               name="condition"
               compact
               options={conditionOptions}
               value={this.state.condition}
               onChange={this.handleChange}
             />
-            <Button loading={loading} type="submit" icon="search" />
+            <Button
+              style={{ marginLeft: 8 }}
+              loading={loading}
+              type="submit"
+              icon="search"
+            />
           </Form.Input>
         </Form>
       </div>
