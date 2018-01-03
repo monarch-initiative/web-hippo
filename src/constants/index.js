@@ -9,3 +9,4 @@ export const SUBSCRIPTION_SUCCESS = 'SUBSCRIPTION_SUCCESS';
 export const SUBSCRIPTION_FAILURE = 'SUBSCRIPTION_FAILURE';
 
 export const SET_GENE_SELECTION_IN_FILTERS = 'SET_GENE_SELECTION_IN_FILTERS';
+export const PUBMED_URL = 'https://www.ncbi.nlm.nih.gov/pubmed';

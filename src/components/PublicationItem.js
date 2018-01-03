@@ -4,6 +4,7 @@ import moment from 'moment';
 import Authors from './Authors';
 import ArticleAbstractViewer from './ArticleAbstractViewer';
 import JournalInfo from './JournalInfo';
+import { PUBMED_URL } from '../constants';
 
 export default function PublicationItem({
   articleAbstract,
@@ -33,7 +34,9 @@ export default function PublicationItem({
       />
 
       <Label.Group size="tiny">
-        <Label>PMID: {pmid}</Label>
+        <Label as="a" href={`${PUBMED_URL}/${pmid}`} target="_blank">
+          PMID: {pmid}
+        </Label>
       </Label.Group>
     </Segment>
   );
