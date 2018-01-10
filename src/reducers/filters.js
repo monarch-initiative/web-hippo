@@ -11,7 +11,7 @@ const filters = (state = fromJS(initialState), action) => {
     case types.FETCH_PUBLICATIONS_SUCCESS:
       return state.set(
         'genes',
-        fromJS(getGeneseFromAnnotations(action.payload))
+        fromJS(getGeneseFromAnnotations(action.payload.articles))
       );
     case types.SET_GENE_SELECTION_IN_FILTERS: {
       const indexOf = state

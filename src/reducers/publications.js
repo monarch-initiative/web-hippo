@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   error: false,
   items: null,
+  pagination: null,
   searchQuery: null
 };
 const publications = (state = fromJS(initialState), action) => {
@@ -17,7 +18,8 @@ const publications = (state = fromJS(initialState), action) => {
     case types.FETCH_PUBLICATIONS_SUCCESS:
       return state
         .set('isLoading', false)
-        .set('items', fromJS(action.payload))
+        .set('items', fromJS(action.payload.articles))
+        .set('pagination', fromJS(action.payload.pagination))
         .set('searchQuery', action.meta.searchQuery);
     default:
       return state;

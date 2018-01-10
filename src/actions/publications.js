@@ -11,7 +11,7 @@ export const fetchPublications = ({ genes, condition }) => {
   };
   return dispatch => {
     dispatch(
-      post('/query', { ...searchQuery }, [
+      post('/query?pageSize=100000&pageNo=1', { ...searchQuery }, [
         types.FETCH_PUBLICATIONS_REQUEST,
         { type: types.FETCH_PUBLICATIONS_SUCCESS, meta: { searchQuery } },
         types.FETCH_PUBLICATIONS_FAILURE
