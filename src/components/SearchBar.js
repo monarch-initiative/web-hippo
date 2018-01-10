@@ -1,68 +1,64 @@
-import React, { Component } from 'react';
-import { Form, Select, Button } from 'semantic-ui-react';
-import queryString from 'query-string';
+import React from 'react';
+import { Form, Select, Button, Dropdown } from 'semantic-ui-react';
+import { stringArrayToOptionsArray } from '../helpers';
+import { union } from 'lodash';
 
-class SearchBar extends Component {
-  state = {
-    genes: '',
-    condition: 'OR'
-  };
-  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+const conditionOptions = [
+  { key: 'any', text: 'Any', value: 'OR' },
+  { key: 'all', text: 'All', value: 'AND' }
+];
 
-  handleSubmit = () => {
-    const searchCriteria = queryString.stringify(this.state);
-    this.props.history.push('/query?' + searchCriteria);
-    this.props.onSearch && this.props.onSearch(searchCriteria);
-  };
-
-  componentDidMount() {
-    if (this.props.location.search) {
-      const parsed = queryString.parse(this.props.location.search);
-      const { genes, condition } = parsed;
-      if (genes && condition) {
-        this.setState({ genes, condition });
-      }
-    }
-  }
-
-  render() {
-    const conditionOptions = [
-      { key: 'any', text: 'Any', value: 'OR' },
-      { key: 'all', text: 'All', value: 'AND' }
-    ];
-    const { loading } = this.props;
-    return (
-      <div style={{ marginBottom: 64 }}>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            fluid
-            name="genes"
-            size="big"
-            loading={loading}
-            placeholder="Search for genes..."
-            value={this.state.genes}
-            onChange={this.handleChange}
-          >
-            <input />
-            <Select
-              style={{ marginLeft: 8 }}
-              name="condition"
-              compact
-              options={conditionOptions}
-              value={this.state.condition}
-              onChange={this.handleChange}
-            />
-            <Button
-              style={{ marginLeft: 8 }}
-              loading={loading}
-              type="submit"
-              icon="search"
-            />
-          </Form.Input>
-        </Form>
-      </div>
-    );
-  }
+export default function SearchBar({
+  isSearchLoading,
+  isAutocompleteLoading,
+  autocompleteGenes,
+  selectedGenes,
+  condition,
+  handleAutocompleteGenesSearchChange,
+  handleSelectedGenesChange,
+  handleConditionChange,
+  handleSearch
+}) {
+  return (
+    <div style={{ marginBottom: 64 }}>
+      <Form
+        onSubmit={handleSearch}
+        style={{
+          display: 'flex',
+          direction: 'row'
+        }}
+      >
+        <Dropdown
+          fluid
+          search
+          selection
+          multiple
+          loading={isAutocompleteLoading}
+          placeholder="Genes..."
+          options={stringArrayToOptionsArray(
+            union(selectedGenes, autocompleteGenes)
+          )}
+          value={selectedGenes}
+          onSearchChange={(e, { searchQuery }) =>
+            handleAutocompleteGenesSearchChange(searchQuery)
+          }
+          onChange={(e, { value }) => handleSelectedGenesChange(value)}
+        />
+        <Select
+          style={{ marginLeft: 5 }}
+          name="condition"
+          compact
+          options={conditionOptions}
+          value={condition}
+          onChange={(e, { value }) => handleConditionChange(value)}
+        />
+        <Button
+          style={{ marginLeft: 5 }}
+          loading={isSearchLoading}
+          type="submit"
+          icon="search"
+        />
+      </Form>
+    </div>
+  );
 }
-
-export default SearchBar;

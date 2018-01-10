@@ -1,12 +1,11 @@
 import * as types from '../constants';
 import { post } from '../api';
-import { splitSearchQuery } from '../helpers';
 
 export const fetchPublications = ({ genes, condition }) => {
   const searchQuery = {
     gene: {
       condition: condition,
-      symbols: splitSearchQuery(genes)
+      symbols: genes
     }
   };
   return dispatch => {

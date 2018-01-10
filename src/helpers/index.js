@@ -81,3 +81,8 @@ export const getGeneseFromAnnotations = publications => {
     [g => -g.publications.length]
   );
 };
+
+export const stringArrayToOptionsArray = stringArray =>
+  Array.isArray(stringArray)
+    ? stringArray.map(item => ({ key: item, value: item, text: item }))
+    : [];
