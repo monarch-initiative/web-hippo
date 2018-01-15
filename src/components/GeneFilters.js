@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Header, Checkbox, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
+const NUMBER_OF_VISIBLE_FILTERS = 10;
 
 const Link = styled.a`
   cursor: pointer;
 `;
 
 class GeneFilters extends Component {
-  state = { numberOfVisibleFilters: 10 };
+  state = { numberOfVisibleFilters: NUMBER_OF_VISIBLE_FILTERS };
 
   getFilters = () => {
     const { filters } = this.props;
@@ -35,7 +36,9 @@ class GeneFilters extends Component {
       >
         <Link
           onClick={() =>
-            this.extendNumberOfVisibleFilters(numberOfVisibleFilters + 10)
+            this.extendNumberOfVisibleFilters(
+              numberOfVisibleFilters + NUMBER_OF_VISIBLE_FILTERS
+            )
           }
         >
           More
