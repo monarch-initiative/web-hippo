@@ -14,7 +14,9 @@ export default function Authors({ authors }) {
       <Icon name="users" />
       <Label.Group size="small">
         {authors.map((author, index) => (
-          <Label key={index}>{`${author.lastName} ${author.initials}`}</Label>
+          <Label basic style={{ border: 'none' }} key={index}>{`${
+            author.lastName
+          } ${author.initials}`}</Label>
         ))}
       </Label.Group>
     </div>
