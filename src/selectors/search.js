@@ -12,3 +12,4 @@ export const selectedGenes = createSelector(
 
 export const condition = state => state.getIn(['search', 'condition']);
 export const isLoading = state => state.getIn(['search', 'isLoading']);
+export const searchQuery = state => state.getIn(['search', 'searchQuery']);

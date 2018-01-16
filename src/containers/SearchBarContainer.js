@@ -63,7 +63,8 @@ const mapStateToProps = state => ({
   isAutocompleteLoading: searchSelectors.isLoading(state),
   autocompleteGenes: searchSelectors.autocompleteGenes(state),
   selectedGenes: searchSelectors.selectedGenes(state),
-  condition: searchSelectors.condition(state)
+  condition: searchSelectors.condition(state),
+  searchQuery: searchSelectors.searchQuery(state)
 });
 
 const mapDispatchToProps = dispatch =>

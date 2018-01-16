@@ -8,7 +8,10 @@ export const fetchGenesAutocompleteList = searchQuery => {
 
     return dispatch(
       get(`/query/autocomplete/${encodeURIComponent(searchQuery)}`, [
-        types.FETCH_GENES_AUTOCOMPLETE_LIST_REQUEST,
+        {
+          type: types.FETCH_GENES_AUTOCOMPLETE_LIST_REQUEST,
+          meta: { searchQuery }
+        },
         types.FETCH_GENES_AUTOCOMPLETE_LIST_SUCCESS,
         types.FETCH_GENES_AUTOCOMPLETE_LIST_FAILURE
       ])

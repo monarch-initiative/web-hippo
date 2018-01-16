@@ -13,6 +13,7 @@ export default function SearchBar({
   isAutocompleteLoading,
   autocompleteGenes,
   selectedGenes,
+  searchQuery,
   condition,
   handleAutocompleteGenesSearchChange,
   handleSelectedGenesChange,
@@ -39,10 +40,11 @@ export default function SearchBar({
             union(selectedGenes, autocompleteGenes)
           )}
           value={selectedGenes}
-          onSearchChange={(e, { searchQuery }) =>
-            handleAutocompleteGenesSearchChange(searchQuery)
+          onSearchChange={(e, { searchQuery: newSearchQuery }) =>
+            handleAutocompleteGenesSearchChange(newSearchQuery)
           }
           onChange={(e, { value }) => handleSelectedGenesChange(value)}
+          searchQuery={searchQuery}
         />
         <Select
           style={{ marginLeft: 5 }}
