@@ -11,8 +11,8 @@ import * as searchSelectors from '../selectors/search';
 import { splitSearchQuery } from '../helpers';
 
 class SearchBarContainer extends Component {
-  handleAutocompleteGenesSearchChange = searchQuery =>
-    this.props.fetchGenesAutocompleteList(searchQuery);
+  handleAutocompleteGenesSearchChange = autocompleteSearchQuery =>
+    this.props.fetchGenesAutocompleteList(autocompleteSearchQuery);
 
   handleSelectedGenesChange = selectedGenes =>
     this.props.setSelectedGenes(selectedGenes);
@@ -60,11 +60,11 @@ class SearchBarContainer extends Component {
 
 const mapStateToProps = state => ({
   isSearchLoading: publicationSelectors.isLoading(state),
-  isAutocompleteLoading: searchSelectors.isLoading(state),
+  isAutocompleteLoading: searchSelectors.isAutocompleteLoading(state),
   autocompleteGenes: searchSelectors.autocompleteGenes(state),
   selectedGenes: searchSelectors.selectedGenes(state),
   condition: searchSelectors.condition(state),
-  searchQuery: searchSelectors.searchQuery(state)
+  autocompleteSearchQuery: searchSelectors.autocompleteSearchQuery(state)
 });
 
 const mapDispatchToProps = dispatch =>

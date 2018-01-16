@@ -1,20 +1,23 @@
 import * as types from '../constants';
 import { get } from '../api';
 
-export const fetchGenesAutocompleteList = searchQuery => {
+export const fetchGenesAutocompleteList = autocompleteSearchQuery => {
   return dispatch => {
-    if (!searchQuery)
+    if (!autocompleteSearchQuery)
       return dispatch({ type: types.CLEAR_GENES_AUTOCOMPLETE_LIST });
 
     return dispatch(
-      get(`/query/autocomplete/${encodeURIComponent(searchQuery)}`, [
-        {
-          type: types.FETCH_GENES_AUTOCOMPLETE_LIST_REQUEST,
-          meta: { searchQuery }
-        },
-        types.FETCH_GENES_AUTOCOMPLETE_LIST_SUCCESS,
-        types.FETCH_GENES_AUTOCOMPLETE_LIST_FAILURE
-      ])
+      get(
+        `/query/autocomplete/${encodeURIComponent(autocompleteSearchQuery)}`,
+        [
+          {
+            type: types.FETCH_GENES_AUTOCOMPLETE_LIST_REQUEST,
+            meta: { autocompleteSearchQuery }
+          },
+          types.FETCH_GENES_AUTOCOMPLETE_LIST_SUCCESS,
+          types.FETCH_GENES_AUTOCOMPLETE_LIST_FAILURE
+        ]
+      )
     );
   };
 };

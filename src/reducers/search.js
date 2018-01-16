@@ -2,35 +2,36 @@ import { fromJS } from 'immutable';
 import * as types from '../constants';
 
 const initialState = {
-  autocomplete: { genes: [] },
+  autocomplete: { genes: [], searchQuery: '', isLoading: false },
   selectedGenes: [],
-  condition: 'OR',
-  searchQuery: '',
-  isLoading: false
+  condition: 'OR'
 };
 
 const filters = (state = fromJS(initialState), action) => {
   switch (action.type) {
     case types.FETCH_GENES_AUTOCOMPLETE_LIST_REQUEST:
       return state
-        .set('isLoading', !action.error)
-        .set('searchQuery', action.meta.searchQuery);
+        .setIn(['autocomplete', 'isLoading'], !action.error)
+        .setIn(
+          ['autocomplete', 'searchQuery'],
+          action.meta.autocompleteSearchQuery
+        );
     case types.FETCH_GENES_AUTOCOMPLETE_LIST_SUCCESS:
       return state
         .setIn(['autocomplete', 'genes'], fromJS(action.payload))
-        .set('isLoading', false);
+        .setIn(['autocomplete', 'isLoading'], false);
     case types.FETCH_GENES_AUTOCOMPLETE_LIST_FAILURE:
-      return state.set('isLoading', false);
+      return state.setIn(['autocomplete', 'isLoading'], false);
     case types.SET_SEARCH_SELECTED_GENES:
       return state
         .set('selectedGenes', fromJS(action.payload))
-        .set('searchQuery', '');
+        .setIn(['autocomplete', 'searchQuery'], '');
     case types.SET_SEARCH_CONDITION:
       return state.set('condition', action.payload);
     case types.CLEAR_GENES_AUTOCOMPLETE_LIST:
       return state
         .setIn(['autocomplete', 'genes'], fromJS([]))
-        .set('searchQuery', '');
+        .setIn(['autocomplete', 'searchQuery'], '');
     default:
       return state;
   }
