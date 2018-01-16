@@ -1,31 +1,19 @@
 import React from 'react';
 import NavBar from './NavBar';
 import { Container, Message, Grid } from 'semantic-ui-react';
-import SearchBar from '../components/SearchBar';
+import SearchBarContainer from '../containers/SearchBarContainer';
 import Publications from '../components/Publications';
 import SubscriptionContainer from '../containers/SubscriptionContainer';
 import FiltersContainer from '../containers/FiltersContainer';
 
-export default function Home({
-  isLoading,
-  isError,
-  history,
-  location,
-  publicationItems,
-  handleFetchPublication
-}) {
+export default function Home({ isLoading, isError, publicationItems }) {
   return (
     <div>
       <NavBar />
       <Grid centered style={{ marginTop: '8em' }}>
         <Grid.Row>
           <Grid.Column width={8}>
-            <SearchBar
-              history={history}
-              location={location}
-              loading={isLoading}
-              onSearch={handleFetchPublication}
-            />
+            <SearchBarContainer />
             {isError && (
               <Message
                 negative

@@ -2,16 +2,18 @@ import { combineReducers } from 'redux-immutable';
 import { reducer as form } from 'redux-form/immutable';
 import publications from './publications';
 import subscription from './subscription';
+import search from './search';
 import filters from './filters';
 
 /**
  * @return collection of reducers
  */
-const exampleReducer = combineReducers({
+const reducers = combineReducers({
   form,
   publications,
   filters,
-  subscription
+  subscription,
+  search
 });
 
-export default exampleReducer;
+export default reducers;
