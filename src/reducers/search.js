@@ -25,7 +25,8 @@ const filters = (state = fromJS(initialState), action) => {
     case types.SET_SEARCH_SELECTED_GENES:
       return state
         .set('selectedGenes', fromJS(action.payload))
-        .setIn(['autocomplete', 'searchQuery'], '');
+        .setIn(['autocomplete', 'searchQuery'], '')
+        .setIn(['autocomplete', 'genes'], fromJS([]));
     case types.SET_SEARCH_CONDITION:
       return state.set('condition', action.payload);
     case types.CLEAR_GENES_AUTOCOMPLETE_LIST:
