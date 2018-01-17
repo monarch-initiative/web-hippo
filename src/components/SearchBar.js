@@ -34,6 +34,7 @@ export default function SearchBar({
           search
           selection
           multiple
+          closeOnChange
           loading={isAutocompleteLoading}
           placeholder="Genes..."
           options={stringArrayToOptionsArray(
