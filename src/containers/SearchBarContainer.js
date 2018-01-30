@@ -2,56 +2,43 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import queryString from 'query-string';
 import * as actions from '../actions';
 import toJS from '../helpers/toJS';
 import SearchBar from '../components/SearchBar';
 import * as publicationSelectors from '../selectors/publications';
 import * as searchSelectors from '../selectors/search';
-import { splitSearchQuery } from '../helpers';
+import { unionBy } from 'lodash';
 
 class SearchBarContainer extends Component {
-  handleAutocompleteGenesSearchChange = autocompleteSearchQuery =>
-    this.props.fetchGenesAutocompleteList(autocompleteSearchQuery);
+  handleAutocompleteSearchChange = autocompleteSearchQuery =>
+    this.props.fetchAutocompleteList(autocompleteSearchQuery);
 
-  handleSelectedGenesChange = selectedGenes =>
-    this.props.setSelectedGenes(selectedGenes);
-
-  handleConditionChange = condition => {
-    this.props.setSearchCondition(condition);
-  };
+  handleSelectedItemsChange = selectedItemIds =>
+    this.props.setSelectedItems(
+      unionBy(
+        this.props.selectedItems,
+        this.props.autocompleteItems,
+        'id'
+      ).filter(item => selectedItemIds.indexOf(item.id) >= 0)
+    );
 
   handleSearch = () => {
-    const { selectedGenes, condition } = this.props;
-    const searchCriteria = queryString.stringify({
-      genes: selectedGenes.join(' '),
-      condition
-    });
-    this.props.history.push('/query?' + searchCriteria);
-    this.props.fetchPublications({ genes: selectedGenes, condition });
-  };
+    const { selectedItems } = this.props;
+    if (!Array.isArray(selectedItems) || selectedItems.length === 0) return;
 
-  componentDidMount() {
-    var parsed = queryString.parse(this.props.location.search);
-    if (parsed.condition && parsed.genes) {
-      const selectedGenes = splitSearchQuery(parsed.genes);
-      this.props.setSelectedGenes(selectedGenes);
-      this.props.fetchPublications({
-        condition: parsed.condition,
-        genes: selectedGenes
-      });
-    }
-  }
+    const searchItems = selectedItems.map(item => ({
+      id: item.id,
+      type: item.type
+    }));
+    this.props.fetchPublications(searchItems);
+  };
 
   render() {
     return (
       <SearchBar
         {...this.props}
-        handleAutocompleteGenesSearchChange={
-          this.handleAutocompleteGenesSearchChange
-        }
-        handleSelectedGenesChange={this.handleSelectedGenesChange}
-        handleConditionChange={this.handleConditionChange}
+        handleAutocompleteSearchChange={this.handleAutocompleteSearchChange}
+        handleSelectedItemsChange={this.handleSelectedItemsChange}
         handleSearch={this.handleSearch}
       />
     );
@@ -61,9 +48,8 @@ class SearchBarContainer extends Component {
 const mapStateToProps = state => ({
   isSearchLoading: publicationSelectors.isLoading(state),
   isAutocompleteLoading: searchSelectors.isAutocompleteLoading(state),
-  autocompleteGenes: searchSelectors.autocompleteGenes(state),
-  selectedGenes: searchSelectors.selectedGenes(state),
-  condition: searchSelectors.condition(state),
+  autocompleteItems: searchSelectors.autocompleteItems(state),
+  selectedItems: searchSelectors.selectedItems(state),
   autocompleteSearchQuery: searchSelectors.autocompleteSearchQuery(state)
 });
 

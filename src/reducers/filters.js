@@ -1,31 +1,28 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants';
-import { getGeneseFromAnnotations } from '../helpers';
 
 const initialState = {
-  genes: []
+  isLoading: false,
+  error: false,
+  items: [],
+  selectedItems: []
 };
 
 const filters = (state = fromJS(initialState), action) => {
   switch (action.type) {
+    case types.FETCH_PUBLICATIONS_REQUEST:
+      return fromJS(initialState);
+    case types.FILTER_PUBLICATIONS_REQUEST:
+    case types.FILTER_PUBLICATIONS_FAILURE:
+      return action.error
+        ? state.set('isLoading', false).set('error', true)
+        : state.set('isLoading', true).set('error', false);
+    case types.FILTER_PUBLICATIONS_SUCCESS:
+      return state
+        .set('selectedItems', fromJS(action.meta.filterItems))
+        .set('isLoading', false);
     case types.FETCH_PUBLICATIONS_SUCCESS:
-      return state.set(
-        'genes',
-        fromJS(getGeneseFromAnnotations(action.payload.articles))
-      );
-    case types.SET_GENE_SELECTION_IN_FILTERS: {
-      const indexOf = state
-        .get('genes')
-        .findIndex(g => g.get('symbol') === action.symbol);
-      return indexOf > -1
-        ? state.set(
-            'genes',
-            state
-              .get('genes')
-              .update(indexOf, v => v.set('selected', action.selected))
-          )
-        : state;
-    }
+      return state.set('items', fromJS(action.payload.filters));
     default:
       return state;
   }

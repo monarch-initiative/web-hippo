@@ -9,8 +9,8 @@ export const splitSearchQuery = searchQuery => {
 };
 
 export const getOffsetsArray = annotations => {
-  if (!annotations || !Array.isArray(annotations.genes)) return [];
-  return sortBy(flatten(annotations.genes.map(gene => [...gene.offsets])), [
+  if (!Array.isArray(annotations)) return [];
+  return sortBy(flatten(annotations.map(gene => [...gene.offsets])), [
     'startIndex'
   ]);
 };
@@ -57,32 +57,13 @@ export const splitTextByOffsets = (text, offsets) => {
   return result;
 };
 
-export const getGeneseFromAnnotations = publications => {
-  if (!Array.isArray(publications)) return [];
-
-  const geneSymbols = flatten(
-    publications.map(p =>
-      p.annotations.genes.map(gene => ({
-        symbol: gene.geneSymbol,
-        publications: [p.pmid],
-        selected: false
+export const itemsToOptionsArray = (items, getTypeStyle) =>
+  Array.isArray(items)
+    ? items.map(item => ({
+        key: item.id,
+        value: item.id,
+        type: item.type,
+        text: item.text,
+        style: getTypeStyle(item.type)
       }))
-    )
-  );
-
-  return sortBy(
-    geneSymbols.reduce((result, gene) => {
-      let index = result.findIndex(item => item.symbol === gene.symbol);
-      index > -1
-        ? result[index].publications.push(...gene.publications)
-        : result.push(gene);
-      return result;
-    }, []),
-    [g => -g.publications.length]
-  );
-};
-
-export const stringArrayToOptionsArray = stringArray =>
-  Array.isArray(stringArray)
-    ? stringArray.map(item => ({ key: item, value: item, text: item }))
     : [];

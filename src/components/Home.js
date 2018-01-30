@@ -6,7 +6,12 @@ import Publications from '../components/Publications';
 import SubscriptionContainer from '../containers/SubscriptionContainer';
 import FiltersContainer from '../containers/FiltersContainer';
 
-export default function Home({ isLoading, isError, publicationItems }) {
+export default function Home({
+  isLoading,
+  isError,
+  publicationItems,
+  filterItems
+}) {
   return (
     <div>
       <NavBar />
@@ -33,7 +38,8 @@ export default function Home({ isLoading, isError, publicationItems }) {
                 />
               </Grid.Column>
             </Grid.Row>,
-            publicationItems.length > 0 && (
+            (publicationItems.length > 0 ||
+              (Array.isArray(filterItems) && filterItems.length > 0)) && (
               <Grid.Row key="2">
                 <Grid.Column width={4}>
                   <FiltersContainer />

@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
 
-export const filters = createSelector(
-  [state => state.getIn(['filters', 'genes'])],
+export const filterItems = createSelector(
+  [state => state.getIn(['filters', 'items'])],
   items => items
 );
-
-export const filteredPublicationIds = state =>
-  filters(state)
-    .filter(g => g.get('selected') === true)
-    .flatMap(g => g.get('publications'));
+export const selectedFilterItems = createSelector(
+  [state => state.getIn(['filters', 'selectedItems'])],
+  items => items
+);
+export const isLoading = state => state.getIn(['filters', 'isLoading']);
+export const isError = state => state.getIn(['filters', 'error']);

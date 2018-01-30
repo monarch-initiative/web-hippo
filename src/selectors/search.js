@@ -1,17 +1,17 @@
 import { createSelector } from 'reselect';
 
-export const autocompleteGenes = createSelector(
-  [state => state.getIn(['search', 'autocomplete', 'genes'])],
+export const autocompleteItems = createSelector(
+  [state => state.getIn(['search', 'autocomplete', 'items'])],
   items => items
 );
 
-export const selectedGenes = createSelector(
-  [state => state.getIn(['search', 'selectedGenes'])],
+export const selectedItems = createSelector(
+  [state => state.getIn(['search', 'selectedItems'])],
   items => items
 );
 
-export const condition = state => state.getIn(['search', 'condition']);
 export const isAutocompleteLoading = state =>
   state.getIn(['search', 'autocomplete', 'isLoading']);
+
 export const autocompleteSearchQuery = state =>
   state.getIn(['search', 'autocomplete', 'searchQuery']);

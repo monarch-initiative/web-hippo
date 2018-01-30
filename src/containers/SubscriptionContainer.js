@@ -17,8 +17,8 @@ class SubscriptionContainer extends Component {
   };
 
   subscribe = subscriptionInfo => {
-    const { searchQuery } = this.props;
-    this.props.subscribe({ subscriptionInfo, searchQuery });
+    const { searchItems } = this.props;
+    this.props.subscribe({ subscriptionInfo, searchItems });
   };
 
   render() {
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
   isError: subscriptionSelectors.isError(state),
   isSubscribing: subscriptionSelectors.isSubscribing(state),
   isSubscribed: subscriptionSelectors.isSubscribed(state),
-  searchQuery: publicationSelectors.searchQuery(state)
+  searchItems: publicationSelectors.searchItems(state)
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,23 +1,21 @@
 import React from 'react';
-import { Form, Select, Button, Dropdown } from 'semantic-ui-react';
-import { stringArrayToOptionsArray } from '../helpers';
-import { union } from 'lodash';
+import { Form, Button, Dropdown, Label } from 'semantic-ui-react';
+import { itemsToOptionsArray } from '../helpers';
+import { unionBy } from 'lodash';
+import { ENTITIES } from '../constants';
 
-const conditionOptions = [
-  { key: 'any', text: 'Any', value: 'OR' },
-  { key: 'all', text: 'All', value: 'AND' }
-];
+const getTypeStyle = type => ({
+  color: ENTITIES.find(entity => entity.type === type).color
+});
 
 export default function SearchBar({
   isSearchLoading,
   isAutocompleteLoading,
-  autocompleteGenes,
-  selectedGenes,
+  autocompleteItems,
+  selectedItems,
   autocompleteSearchQuery,
-  condition,
-  handleAutocompleteGenesSearchChange,
-  handleSelectedGenesChange,
-  handleConditionChange,
+  handleAutocompleteSearchChange,
+  handleSelectedItemsChange,
   handleSearch
 }) {
   return (
@@ -36,24 +34,20 @@ export default function SearchBar({
           multiple
           closeOnChange
           loading={isAutocompleteLoading}
-          placeholder="Genes..."
-          options={stringArrayToOptionsArray(
-            union(selectedGenes, autocompleteGenes)
+          placeholder="Search..."
+          renderLabel={(item, index, defaultLabelProps) => (
+            <Label style={item.style} content={item.text} />
           )}
-          value={selectedGenes}
+          options={itemsToOptionsArray(
+            unionBy(selectedItems, autocompleteItems, 'id'),
+            getTypeStyle
+          )}
+          value={selectedItems.map(item => item.id)}
           onSearchChange={(e, { searchQuery: autocompleteSearchQuery }) =>
-            handleAutocompleteGenesSearchChange(autocompleteSearchQuery)
+            handleAutocompleteSearchChange(autocompleteSearchQuery)
           }
-          onChange={(e, { value }) => handleSelectedGenesChange(value)}
+          onChange={(e, { options, value }) => handleSelectedItemsChange(value)}
           searchQuery={autocompleteSearchQuery}
-        />
-        <Select
-          style={{ marginLeft: 5 }}
-          name="condition"
-          compact
-          options={conditionOptions}
-          value={condition}
-          onChange={(e, { value }) => handleConditionChange(value)}
         />
         <Button
           style={{ marginLeft: 5 }}

@@ -12,13 +12,15 @@ export default function Authors({ authors }) {
       }}
     >
       <Icon name="users" />
-      <Label.Group size="small">
-        {authors.map((author, index) => (
-          <Label basic style={{ border: 'none' }} key={index}>{`${
-            author.lastName
-          } ${author.initials}`}</Label>
-        ))}
-      </Label.Group>
+      <Label basic size="small" style={{ border: 'none' }}>
+        {authors.reduce((result, author, index) => {
+          result = result.concat(
+            index > 0 ? ', ' : '',
+            `${author.lastName} ${author.initials}`
+          );
+          return result;
+        }, '')}
+      </Label>
     </div>
   );
 }

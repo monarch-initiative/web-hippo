@@ -4,14 +4,14 @@ import { post } from '../api';
 export const clearSubscription = () => ({
   type: types.SUBSCRIPTION_CLEAR
 });
-export const subscribe = ({ subscriptionInfo, searchQuery }) => {
+export const subscribe = ({ subscriptionInfo, searchItems }) => {
   return dispatch => {
     dispatch(
       post(
         '/subscription',
         {
           ...subscriptionInfo,
-          query: searchQuery
+          query: { searchItems }
         },
         [
           types.SUBSCRIPTION_REQUEST,
