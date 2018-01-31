@@ -13,13 +13,15 @@ export default function Authors({ authors }) {
     >
       <Icon name="users" />
       <Label basic size="small" style={{ border: 'none' }}>
-        {authors.reduce((result, author, index) => {
-          result = result.concat(
-            index > 0 ? ', ' : '',
-            `${author.lastName} ${author.initials}`
-          );
-          return result;
-        }, '')}
+        {Array.isArray(authors) && authors.length > 0
+          ? authors.reduce((result, author, index) => {
+              result = result.concat(
+                index > 0 ? ', ' : '',
+                `${author.lastName} ${author.initials}`
+              );
+              return result;
+            }, '')
+          : '[No authors listed]'}
       </Label>
     </div>
   );
