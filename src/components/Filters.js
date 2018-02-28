@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Checkbox, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
+
 const NUMBER_OF_VISIBLE_FILTER_ITEMS = 10;
 
 const Link = styled.a`
@@ -19,7 +20,7 @@ class Filters extends Component {
 
   extendNumberOfVisibleFilterItems = numberOfVisibleFilterItems =>
     this.setState({
-      numberOfVisibleFilterItems
+      numberOfVisibleFilterItems,
     });
 
   renderMoreFilters = () => {
@@ -31,29 +32,25 @@ class Filters extends Component {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          paddingTop: 10
+          paddingTop: 10,
         }}
       >
         <Link
           onClick={() =>
-            this.extendNumberOfVisibleFilterItems(
-              numberOfVisibleFilterItems + NUMBER_OF_VISIBLE_FILTER_ITEMS
-            )
+            this.extendNumberOfVisibleFilterItems(numberOfVisibleFilterItems + NUMBER_OF_VISIBLE_FILTER_ITEMS)
           }
         >
           More
         </Link>
-        <Link
-          onClick={() => this.extendNumberOfVisibleFilterItems(items.length)}
-        >
-          All
-        </Link>
+        <Link onClick={() => this.extendNumberOfVisibleFilterItems(items.length)}>All</Link>
       </div>
     );
   };
 
   render() {
-    const { onFilterChange, type, title, color, items, disabled } = this.props;
+    const {
+      onFilterChange, type, title, color, items, disabled,
+    } = this.props;
     if (!Array.isArray(items) || items.length === 0) return null;
     return (
       <div>

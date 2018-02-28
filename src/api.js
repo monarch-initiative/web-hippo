@@ -1,28 +1,9 @@
-import { RSAA } from 'redux-api-middleware';
+import { get, post } from './rest';
 
-const contentTypeHeaders = {
-  'Content-Type': 'application/json;'
-};
+export const getPublications = (pageNo, params, actions) =>
+  post(`/query/v1.0?pageSize=${10}&pageNo=${pageNo}`, { ...params }, actions);
 
-const api = ({ endpoint, method, types, body, headers }) => {
-  return {
-    [RSAA]: {
-      endpoint: `${process.env.REACT_APP_BASE_URL}${endpoint}`,
-      method,
-      body: JSON.stringify(body),
-      headers,
-      types
-    }
-  };
-};
+export const getAutocomplete = (autocompleteSearchQuery, actions) =>
+  get(`/query/autocomplete/beta/${encodeURIComponent(autocompleteSearchQuery)}`, actions);
 
-export const get = (endpoint, types) => api({ endpoint, method: 'GET', types });
-
-export const put = (endpoint, body, types) =>
-  api({ endpoint, method: 'PUT', body, types, headers: contentTypeHeaders });
-
-export const post = (endpoint, body, types) =>
-  api({ endpoint, method: 'POST', types, body, headers: contentTypeHeaders });
-
-export const remove = (endpoint, types) =>
-  api({ endpoint, method: 'DELETE', types, headers: contentTypeHeaders });
+export const postSubscription = (params, actions) => post('/subscription', { ...params }, actions);

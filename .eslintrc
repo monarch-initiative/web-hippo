@@ -6,7 +6,10 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "import/no-named-as-default": 0
+    "import/no-named-as-default": 0,
+    "react/prop-types": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "import/prefer-default-export": 0
   },
   "parser": "babel-eslint"
 }

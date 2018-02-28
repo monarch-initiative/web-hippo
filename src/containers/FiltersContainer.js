@@ -21,12 +21,11 @@ class FiltersContainer extends Component {
     this.props.filterPublications({
       searchItems,
       queryId,
-      filterItems
+      filterItems,
     });
   };
 
-  filterItemsByType = type =>
-    this.props.filterItems.filter(item => item.type === type);
+  filterItemsByType = type => this.props.filterItems.filter(item => item.type === type);
 
   render() {
     return (
@@ -52,12 +51,9 @@ const mapStateToProps = state => ({
   isLoading: filterSelectors.isLoading(state),
   selectedFilterItems: filterSelectors.selectedFilterItems(state),
   searchItems: publicationSelectors.searchItems(state),
-  queryId: publicationSelectors.queryId(state)
+  queryId: publicationSelectors.queryId(state),
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...actions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  toJS(FiltersContainer)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(toJS(FiltersContainer));
