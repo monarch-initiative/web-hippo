@@ -5,7 +5,7 @@ const initialState = {
   isLoading: false,
   error: false,
   items: [],
-  selectedItems: []
+  selectedItems: [],
 };
 
 const filters = (state = fromJS(initialState), action) => {
@@ -20,6 +20,7 @@ const filters = (state = fromJS(initialState), action) => {
     case types.FILTER_PUBLICATIONS_SUCCESS:
       return state
         .set('selectedItems', fromJS(action.meta.filterItems))
+        .set('items', fromJS(action.payload.filters))
         .set('isLoading', false);
     case types.FETCH_PUBLICATIONS_SUCCESS:
       return state.set('items', fromJS(action.payload.filters));
