@@ -1,11 +1,10 @@
 import React from 'react';
 import { Form, Button, Dropdown, Label } from 'semantic-ui-react';
-import { itemsToOptionsArray } from '../helpers';
 import { unionBy } from 'lodash';
-import { ENTITIES } from '../constants';
+import { itemsToOptionsArray, getEntityType } from '../helpers';
 
 const getTypeStyle = type => ({
-  color: ENTITIES.find(entity => entity.type === type).color
+  color: getEntityType(type).color,
 });
 
 export default function SearchBar({
@@ -16,7 +15,7 @@ export default function SearchBar({
   autocompleteSearchQuery,
   handleAutocompleteSearchChange,
   handleSelectedItemsChange,
-  handleSearch
+  handleSearch,
 }) {
   return (
     <div style={{ marginBottom: 64 }}>
@@ -24,7 +23,7 @@ export default function SearchBar({
         onSubmit={handleSearch}
         style={{
           display: 'flex',
-          direction: 'row'
+          direction: 'row',
         }}
       >
         <Dropdown
@@ -40,7 +39,7 @@ export default function SearchBar({
           )}
           options={itemsToOptionsArray(
             unionBy(selectedItems, autocompleteItems, 'id'),
-            getTypeStyle
+            getTypeStyle,
           )}
           value={selectedItems.map(item => item.id)}
           onSearchChange={(e, { searchQuery: autocompleteSearchQuery }) =>
@@ -49,12 +48,7 @@ export default function SearchBar({
           onChange={(e, { options, value }) => handleSelectedItemsChange(value)}
           searchQuery={autocompleteSearchQuery}
         />
-        <Button
-          style={{ marginLeft: 5 }}
-          loading={isSearchLoading}
-          type="submit"
-          icon="search"
-        />
+        <Button style={{ marginLeft: 5 }} loading={isSearchLoading} type="submit" icon="search" />
       </Form>
     </div>
   );

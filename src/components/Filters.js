@@ -53,7 +53,7 @@ class Filters extends Component {
     } = this.props;
     if (!Array.isArray(items) || items.length === 0) return null;
     return (
-      <div>
+      <div style={{ marginBottom: 30 }}>
         <Header as="h4">{title}</Header>
         <Segment color={color} padded disabled={disabled}>
           {this.getFilterItems().map(filterItem => (
