@@ -11,10 +11,10 @@ export default function ArticleAbstractViewer({ articleAbstract, annotations }) 
   const articleAbstractArray = splitTextByOffsets(articleAbstract, getOffsetsArray(annotations));
   return (
     <p>
-      {articleAbstractArray.map(item =>
+      {articleAbstractArray.map((item, index) =>
           (item.isAnnotated ? (
             <Annotated
-              key={item.id}
+              key={index}
               href={getEntityType(item.type).href(item.id)}
               target="_blank"
               color={getEntityType(item.type).color}
