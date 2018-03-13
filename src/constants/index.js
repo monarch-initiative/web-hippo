@@ -26,6 +26,16 @@ export const SET_GENE_SELECTION_IN_FILTERS = 'SET_GENE_SELECTION_IN_FILTERS';
 export const PUBMED_URL = 'https://www.ncbi.nlm.nih.gov/pubmed';
 
 export const ENTITIES = [
-  { type: 'GENE', title: 'Genes', color: 'green' },
-  { type: 'PHENOTYPE', title: 'Phenotypes', color: 'orange' },
+  {
+    type: 'GENE',
+    title: 'Genes',
+    color: 'blue',
+    href: id => `https://monarchinitiative.org/gene/HGNC:${id}`,
+  },
+  {
+    type: 'PHENOTYPE',
+    title: 'Phenotypes',
+    color: 'orange',
+    href: id => `https://monarchinitiative.org/phenotype/${id}`,
+  },
 ];
