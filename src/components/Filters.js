@@ -59,10 +59,10 @@ class Filters extends Component {
           {this.getFilterItems().map(filterItem => (
             <div key={filterItem.id}>
               <Checkbox
-                disabled={disabled}
+                disabled={disabled || filterItem.filteredArticleCount === 0}
                 value={filterItem.id}
                 onChange={(event, data) => onFilterChange(type, data)}
-                label={`${filterItem.text} (${filterItem.articleCount})`}
+                label={`${filterItem.text} (${filterItem.filteredArticleCount})`}
               />
             </div>
           ))}
