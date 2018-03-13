@@ -35,7 +35,7 @@ export default function Home({
           Array.isArray(publicationItems) && [
             <Grid.Row key="1">
               <Grid.Column width={8}>
-                <SubscriptionContainer header={`Result(${pagination.totalArticles})`} />
+                <SubscriptionContainer header={`Results (${pagination.totalArticles})`} />
               </Grid.Column>
             </Grid.Row>,
             (publicationItems.length > 0 ||
