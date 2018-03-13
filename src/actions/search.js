@@ -4,7 +4,7 @@ import { getAutocomplete } from '../api';
 export const fetchAutocompleteList = autocompleteSearchQuery => (dispatch) => {
   if (!autocompleteSearchQuery) return dispatch({ type: types.CLEAR_AUTOCOMPLETE_LIST });
 
-  return dispatch(getAutocomplete(encodeURIComponent(autocompleteSearchQuery), [
+  return dispatch(getAutocomplete(autocompleteSearchQuery, [
     {
       type: types.FETCH_AUTOCOMPLETE_LIST_REQUEST,
       meta: { autocompleteSearchQuery },

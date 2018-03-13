@@ -34,18 +34,14 @@ export default function SearchBar({
           closeOnChange
           loading={isAutocompleteLoading}
           placeholder="Search..."
-          renderLabel={(item, index, defaultLabelProps) => (
-            <Label style={item.style} content={item.text} />
-          )}
+          renderLabel={item => <Label style={item.style} content={item.text} />}
           options={itemsToOptionsArray(
             unionBy(selectedItems, autocompleteItems, 'id'),
             getTypeStyle,
           )}
           value={selectedItems.map(item => item.id)}
-          onSearchChange={(e, { searchQuery: autocompleteSearchQuery }) =>
-            handleAutocompleteSearchChange(autocompleteSearchQuery)
-          }
-          onChange={(e, { options, value }) => handleSelectedItemsChange(value)}
+          onSearchChange={(e, { searchQuery }) => handleAutocompleteSearchChange(searchQuery)}
+          onChange={(e, { value }) => handleSelectedItemsChange(value)}
           searchQuery={autocompleteSearchQuery}
         />
         <Button style={{ marginLeft: 5 }} loading={isSearchLoading} type="submit" icon="search" />
