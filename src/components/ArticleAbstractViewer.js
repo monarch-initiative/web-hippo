@@ -1,3 +1,4 @@
+/* eslint  react/no-array-index-key: "off" */
 import React from 'react';
 import styled from 'styled-components';
 import { getOffsetsArray, splitTextByOffsets, getEntityType } from '../helpers';
