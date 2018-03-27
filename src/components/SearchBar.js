@@ -28,7 +28,7 @@ export default function SearchBar({
       >
         <Dropdown
           fluid
-          search
+          search={text => text}
           selection
           multiple
           closeOnChange
