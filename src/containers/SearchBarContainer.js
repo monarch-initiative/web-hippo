@@ -44,7 +44,6 @@ const mapStateToProps = state => ({
   isAutocompleteLoading: searchSelectors.isAutocompleteLoading(state),
   autocompleteItems: searchSelectors.autocompleteItems(state),
   selectedItems: searchSelectors.selectedItems(state),
-  autocompleteSearchQuery: searchSelectors.autocompleteSearchQuery(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);

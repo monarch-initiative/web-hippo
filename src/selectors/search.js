@@ -2,16 +2,12 @@ import { createSelector } from 'reselect';
 
 export const autocompleteItems = createSelector(
   [state => state.getIn(['search', 'autocomplete', 'items'])],
-  items => items
+  items => items,
 );
 
 export const selectedItems = createSelector(
   [state => state.getIn(['search', 'selectedItems'])],
-  items => items
+  items => items,
 );
 
-export const isAutocompleteLoading = state =>
-  state.getIn(['search', 'autocomplete', 'isLoading']);
-
-export const autocompleteSearchQuery = state =>
-  state.getIn(['search', 'autocomplete', 'searchQuery']);
+export const isAutocompleteLoading = state => state.getIn(['search', 'autocomplete', 'isLoading']);

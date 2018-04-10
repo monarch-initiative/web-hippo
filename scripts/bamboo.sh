@@ -1,9 +1,6 @@
 #!/bin/bash
 set -x
 
-# Get the branch
-#./repo.sh
-
 # NPM Install
 ./scripts/install.sh
 
@@ -13,5 +10,4 @@ set -x
 # Demo
 ./scripts/build-for-demo.sh
 
-# ECR
-./scripts/docker.sh
+
