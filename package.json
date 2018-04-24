@@ -1,6 +1,6 @@
 {
   "homepage": ".",
-  "name": "web-base",
+  "name": "web-pubmed-browser",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

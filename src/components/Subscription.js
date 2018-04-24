@@ -9,7 +9,7 @@ export default function Subscription({
   subscribe,
   isSubscribing,
   isSubscribed,
-  isError
+  isError,
 }) {
   return (
     <div style={{ marginBottom: 30 }}>
