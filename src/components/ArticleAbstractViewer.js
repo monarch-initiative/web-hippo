@@ -12,7 +12,8 @@ export default function ArticleAbstractViewer({ articleAbstract, annotations }) 
   const articleAbstractArray = splitTextByOffsets(articleAbstract, getOffsetsArray(annotations));
   return (
     <p>
-      {articleAbstractArray.map((item, index) =>
+      {articleAbstractArray.map(
+        (item, index) =>
           (item.isAnnotated ? (
             <Annotated
               key={index}
@@ -24,7 +25,8 @@ export default function ArticleAbstractViewer({ articleAbstract, annotations }) 
             </Annotated>
           ) : (
             item.text
-          )))}
+          )),
+      )}
     </p>
   );
 }

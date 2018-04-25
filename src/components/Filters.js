@@ -37,7 +37,9 @@ class Filters extends Component {
       >
         <Link
           onClick={() =>
-            this.extendNumberOfVisibleFilterItems(numberOfVisibleFilterItems + NUMBER_OF_VISIBLE_FILTER_ITEMS)
+            this.extendNumberOfVisibleFilterItems(
+              numberOfVisibleFilterItems + NUMBER_OF_VISIBLE_FILTER_ITEMS,
+            )
           }
         >
           More
@@ -48,9 +50,7 @@ class Filters extends Component {
   };
 
   render() {
-    const {
-      onFilterChange, type, title, color, items, disabled,
-    } = this.props;
+    const { onFilterChange, type, title, color, items, disabled } = this.props;
     if (!Array.isArray(items) || items.length === 0) return null;
     return (
       <div style={{ marginBottom: 30 }}>

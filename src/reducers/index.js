@@ -13,7 +13,7 @@ const reducers = combineReducers({
   publications,
   filters,
   subscription,
-  search
+  search,
 });
 
 export default reducers;
