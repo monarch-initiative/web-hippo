@@ -12,11 +12,11 @@ class SubscriptionContainer extends Component {
   toggleSubscriptionForm = () => {
     this.props.clearSubscription();
     this.setState({
-      isSubscriptionFormOpen: !this.state.isSubscriptionFormOpen
+      isSubscriptionFormOpen: !this.state.isSubscriptionFormOpen,
     });
   };
 
-  subscribe = subscriptionInfo => {
+  subscribe = (subscriptionInfo) => {
     const { searchItems } = this.props;
     this.props.subscribe({ subscriptionInfo, searchItems });
   };
@@ -37,12 +37,9 @@ const mapStateToProps = state => ({
   isError: subscriptionSelectors.isError(state),
   isSubscribing: subscriptionSelectors.isSubscribing(state),
   isSubscribed: subscriptionSelectors.isSubscribed(state),
-  searchItems: publicationSelectors.searchItems(state)
+  searchItems: publicationSelectors.searchItems(state),
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...actions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  toJS(SubscriptionContainer)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(toJS(SubscriptionContainer));

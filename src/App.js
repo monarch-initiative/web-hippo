@@ -1,11 +1,15 @@
 import React from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, HashRouter, Switch } from 'react-router-dom';
 
 import HomeContainer from './containers/HomeContainer';
+import UnsubscribeContainer from './containers/UnsubscribeContainer';
 
 const App = () => (
   <HashRouter>
-    <Route path="/" component={HomeContainer} />
+    <Switch>
+      <Route path="/unsubscribe/:subscriptionId" component={UnsubscribeContainer} />
+      <Route path="/" component={HomeContainer} />
+    </Switch>
   </HashRouter>
 );
 export default App;

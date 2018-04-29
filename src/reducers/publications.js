@@ -7,7 +7,7 @@ const initialState = {
   items: null,
   pagination: null,
   searchItems: null,
-  queryId: null
+  queryId: null,
 };
 const publications = (state = fromJS(initialState), action) => {
   switch (action.type) {

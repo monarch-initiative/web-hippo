@@ -12,35 +12,34 @@ const renderError = ({ touched, error }) =>
     </Label>
   ));
 
-const renderField = ({ input, label, type, meta }) => (
+const renderField = ({
+  input, label, type, meta,
+}) => (
   <Form.Field>
     <Input {...input} placeholder={label} type={type} />
     {renderError(meta)}
   </Form.Field>
 );
 
-const renderOptions = ({ input, options, label, meta }) => (
+const renderOptions = ({
+  input, options, label, meta,
+}) => (
   <Form.Field>
     <Select
       fluid
       value={input.value}
       placeholder={label}
       options={options}
-      closeOnChange={true}
+      closeOnChange
       onChange={(evt, data) => input.onChange(data.value)}
     />
     {renderError(meta)}
   </Form.Field>
 );
 
-const SubscriptionForm = props => {
+const SubscriptionForm = (props) => {
   const {
-    handleSubmit,
-    onSubscribe,
-    onCancel,
-    isSubscribing,
-    isSubscribed,
-    isError
+    handleSubmit, onSubscribe, onCancel, isSubscribing, isSubscribed, isError,
   } = props;
   return (
     <form className="ui form" onSubmit={handleSubmit(onSubscribe)}>
@@ -62,7 +61,7 @@ const SubscriptionForm = props => {
         options={[
           { key: 'daily', text: 'Daily', value: 1 },
           { key: 'weekly', text: 'Weekly', value: 7 },
-          { key: 'monthly', text: 'Monthly', value: 30 }
+          { key: 'monthly', text: 'Monthly', value: 30 },
         ]}
         validate={[isRequired]}
       />
@@ -81,12 +80,7 @@ const SubscriptionForm = props => {
           content="Subscription is submitted successfully."
         />
       ) : (
-        <Button
-          type="submit"
-          color="green"
-          disabled={isSubscribing}
-          loading={isSubscribing}
-        >
+        <Button type="submit" color="green" disabled={isSubscribing} loading={isSubscribing}>
           Subscribe Now
         </Button>
       )}
@@ -106,9 +100,9 @@ const SubscriptionForm = props => {
 
 SubscriptionForm.propTypes = {
   onSubscribe: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
-  form: 'subscription'
+  form: 'subscription',
 })(SubscriptionForm);

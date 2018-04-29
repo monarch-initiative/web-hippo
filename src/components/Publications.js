@@ -4,9 +4,7 @@ import PublicationItem from './PublicationItem';
 export default function Publications({ publicationItems }) {
   return (
     <div>
-      {publicationItems.map(item => {
-        return <PublicationItem key={item.pmid} {...item} />;
-      })}
+      {publicationItems.map(item => <PublicationItem key={item.pmid} {...item} />)}
     </div>
   );
 }
