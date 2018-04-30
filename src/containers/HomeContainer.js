@@ -4,10 +4,18 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import * as publicationSelectors from '../selectors/publications';
 import * as filterSelectors from '../selectors/filters';
+import * as searchSelectors from '../selectors/search';
 import toJS from '../helpers/toJS';
 import Home from '../components/Home';
 
 class HomeContainer extends Component {
+  /*
+  componentDidMount() {
+    if (this.props.match.params.searchIds) {
+      this.props.fetchPublications(this.props.match.params.searchIds.split(','));
+    }
+  } */
+
   componentWillReceiveProps(nextProps) {
     if (
       this.props.pagination &&
@@ -18,10 +26,11 @@ class HomeContainer extends Component {
       window.scrollTo(0, 0);
     }
   }
+
   handlePageChange = pageNo =>
     this.props.fetchPublicationsPage(
-      this.props.searchItems,
-      this.props.selectedFilterItems,
+      this.props.searchIds,
+      this.props.selectedFilterIds,
       this.props.queryId,
       pageNo,
     );
@@ -33,9 +42,9 @@ class HomeContainer extends Component {
 
 const mapStateToProps = state => ({
   publicationItems: publicationSelectors.getPublicationItems(state),
-  selectedFilterItems: filterSelectors.selectedFilterItems(state),
+  selectedFilterIds: filterSelectors.selectedFilterIds(state),
   filterItems: filterSelectors.filterItems(state),
-  searchItems: publicationSelectors.searchItems(state),
+  searchIds: searchSelectors.searchIds(state),
   queryId: publicationSelectors.queryId(state),
   isLoading: publicationSelectors.isLoading(state),
   isError: publicationSelectors.isError(state) || filterSelectors.isError(state),

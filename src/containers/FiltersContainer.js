@@ -6,22 +6,23 @@ import toJS from '../helpers/toJS';
 import Filters from '../components/Filters';
 import * as filterSelectors from '../selectors/filters';
 import * as publicationSelectors from '../selectors/publications';
+import * as searchSelectors from '../selectors/search';
 import { ENTITIES } from '../constants';
 
 class FiltersContainer extends Component {
   handleFilterChange = (type, { value, checked }) => {
-    const { searchItems, queryId, selectedFilterItems } = this.props;
-    let filterItems = [];
+    const { searchIds, queryId, selectedFilterIds } = this.props;
+    let filterIds = [];
     if (checked) {
-      filterItems = [...selectedFilterItems, { type, id: value }];
+      filterIds = [...selectedFilterIds, value];
     } else {
-      filterItems = selectedFilterItems.filter(item => item.id !== value);
+      filterIds = selectedFilterIds.filter(item => item !== value);
     }
 
     this.props.filterPublications({
-      searchItems,
+      searchIds,
       queryId,
-      filterItems,
+      filterIds,
     });
   };
 
@@ -49,8 +50,8 @@ class FiltersContainer extends Component {
 const mapStateToProps = state => ({
   filterItems: filterSelectors.filterItems(state),
   isLoading: filterSelectors.isLoading(state),
-  selectedFilterItems: filterSelectors.selectedFilterItems(state),
-  searchItems: publicationSelectors.searchItems(state),
+  selectedFilterIds: filterSelectors.selectedFilterIds(state),
+  searchIds: searchSelectors.searchIds(state),
   queryId: publicationSelectors.queryId(state),
 });
 

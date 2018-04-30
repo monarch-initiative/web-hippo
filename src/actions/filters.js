@@ -7,10 +7,12 @@ export const setGeneSelectionInFilters = (geneSymbol, selected) => ({
   selected,
 });
 
-export const filterPublications = ({ searchItems, queryId, filterItems }) => (dispatch) => {
-  dispatch(getPublications(1, { searchItems, queryId, filterItems }, [
-    types.FILTER_PUBLICATIONS_REQUEST,
-    { type: types.FILTER_PUBLICATIONS_SUCCESS, meta: { filterItems } },
-    types.FILTER_PUBLICATIONS_FAILURE,
-  ]));
+export const filterPublications = ({ searchIds, queryId, filterIds }) => (dispatch) => {
+  dispatch(
+    getPublications(1, { searchItems: searchIds, queryId, filterItems: filterIds }, [
+      types.FILTER_PUBLICATIONS_REQUEST,
+      { type: types.FILTER_PUBLICATIONS_SUCCESS, meta: { filterIds } },
+      types.FILTER_PUBLICATIONS_FAILURE,
+    ]),
+  );
 };

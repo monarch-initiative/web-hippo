@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import * as subscriptionSelectors from '../selectors/subscription';
-import * as publicationSelectors from '../selectors/publications';
+import * as searchSelectors from '../selectors/search';
 import toJS from '../helpers/toJS';
 import Subscription from '../components/Subscription';
 
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
   isError: subscriptionSelectors.isError(state),
   isSubscribing: subscriptionSelectors.isSubscribing(state),
   isSubscribed: subscriptionSelectors.isSubscribed(state),
-  searchItems: publicationSelectors.searchItems(state),
+  searchItems: searchSelectors.searchItems(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
