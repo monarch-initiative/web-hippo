@@ -24,7 +24,7 @@ class SearchBarContainer extends Component {
     const { searchIds } = this.props;
     if (!Array.isArray(searchIds) || searchIds.length === 0) return;
     this.props.fetchPublications(searchIds);
-    // this.props.history.push(`/query/${searchIds.join(',')}`);
+    this.props.history.push(`/query/${searchIds.join(',')}`);
   };
 
   render() {

@@ -20,7 +20,7 @@ const publications = (state = fromJS(initialState), action) => {
         .set('isLoading', false)
         .set('items', fromJS(action.payload.articles))
         .set('pagination', fromJS(action.payload.pagination))
-        .set('queryId', action.payload.queryId);
+        .set('queryId', action.payload.query.queryId);
     case types.FILTER_PUBLICATIONS_SUCCESS:
       return state
         .set('items', fromJS(action.payload.articles))

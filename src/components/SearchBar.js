@@ -34,7 +34,7 @@ class SearchBar extends Component {
     } = this.props;
 
     return (
-      <div style={{ marginBottom: 64 }}>
+      <div>
         <Form
           onSubmit={handleSearch}
           style={{
