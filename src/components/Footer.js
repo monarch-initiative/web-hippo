@@ -15,7 +15,7 @@ export default function Footer() {
               <Menu.Item>Team</Menu.Item>
             </Menu>
           </Grid.Column>
-          <Grid.Column stretched>
+          <Grid.Column width={10}>
             <Image.Group>
               <Image size="small" src={garvanLogo} />
               <Image size="small" src={monarchLogo} />

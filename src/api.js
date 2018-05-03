@@ -10,3 +10,5 @@ export const postSubscription = (params, actions) => post('/subscription', { ...
 
 export const deleteSubscription = (subscriptionId, actions) =>
   remove(`/subscription/${subscriptionId}`, actions);
+
+export const postFeedback = (params, actions) => post('/feedback', { ...params }, actions);
