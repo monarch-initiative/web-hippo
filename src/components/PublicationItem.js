@@ -23,7 +23,11 @@ export default function PublicationItem({
       <Header>{articleTitle}</Header>
       <Authors authors={authors} />
 
-      <ArticleAbstractViewer articleAbstract={articleAbstract} annotations={annotations} />
+      <ArticleAbstractViewer
+        pmid={pmid}
+        articleAbstract={articleAbstract}
+        annotations={annotations}
+      />
 
       <Label.Group size="tiny">
         <Label as="a" href={`${PUBMED_URL}/${pmid}`} target="_blank">

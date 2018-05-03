@@ -10,6 +10,20 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 
 class Home extends Component {
+  state = { height: window.innerHeight };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateHeight);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateHeight);
+  }
+
+  updateHeight = () => {
+    this.setState({ height: window.innerHeight });
+  };
+
   handleContextRef = (ref) => {
     this.stickTo = ref;
   };
@@ -19,7 +33,7 @@ class Home extends Component {
     return (
       <div>
         <NavBar />
-        <div ref={this.handleContextRef} style={{ minHeight: 500 }}>
+        <div ref={this.handleContextRef} style={{ minHeight: this.state.height - 300 }}>
           <Grid centered style={{ marginTop: '8em' }}>
             <Grid.Row>
               <Grid.Column width={8}>

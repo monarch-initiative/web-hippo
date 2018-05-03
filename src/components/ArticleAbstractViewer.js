@@ -3,7 +3,7 @@ import React from 'react';
 import Annotation from './Annotation';
 import { getOffsetsArray, splitTextByOffsets, getEntityType } from '../helpers';
 
-export default function ArticleAbstractViewer({ articleAbstract, annotations }) {
+export default function ArticleAbstractViewer({ pmid, articleAbstract, annotations }) {
   const articleAbstractArray = splitTextByOffsets(articleAbstract, getOffsetsArray(annotations));
   return (
     <p>
