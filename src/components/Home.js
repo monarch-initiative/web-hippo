@@ -33,7 +33,10 @@ class Home extends Component {
     return (
       <div>
         <NavBar />
-        <div ref={this.handleContextRef} style={{ minHeight: this.state.height - 300 }}>
+        <div
+          ref={this.handleContextRef}
+          style={{ minHeight: this.state.height - 300, marginBottom: '5em' }}
+        >
           <Grid centered style={{ marginTop: '8em' }}>
             <Grid.Row>
               <Grid.Column width={8}>
