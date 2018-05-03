@@ -5,9 +5,11 @@ export const autocompleteItems = createSelector(
   items => items,
 );
 
-export const selectedItems = createSelector(
-  [state => state.getIn(['search', 'selectedItems'])],
+export const searchItems = createSelector(
+  [state => state.getIn(['search', 'searchItems'])],
   items => items,
 );
+
+export const searchIds = createSelector([searchItems], items => items.map(i => i.get('id')));
 
 export const isAutocompleteLoading = state => state.getIn(['search', 'autocomplete', 'isLoading']);

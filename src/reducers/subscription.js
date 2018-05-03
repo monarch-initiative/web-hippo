@@ -3,10 +3,12 @@ import * as types from '../constants';
 
 const initialState = {
   subscribing: false,
-  unsubscribing: false,
-  error: false,
   subscribed: false,
+
+  unsubscribing: false,
   unsubscribed: false,
+
+  error: false,
 };
 const subscription = (state = fromJS(initialState), action) => {
   switch (action.type) {

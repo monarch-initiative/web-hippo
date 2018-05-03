@@ -8,6 +8,7 @@ const App = () => (
   <HashRouter>
     <Switch>
       <Route path="/unsubscribe/:subscriptionId" component={UnsubscribeContainer} />
+      <Route path="/query/:searchIds" component={HomeContainer} />
       <Route path="/" component={HomeContainer} />
     </Switch>
   </HashRouter>

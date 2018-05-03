@@ -28,12 +28,13 @@ class SearchBar extends Component {
       isSearchLoading,
       isAutocompleteLoading,
       autocompleteItems,
-      selectedItems,
+      searchItems,
+      searchIds,
       handleSearch,
     } = this.props;
 
     return (
-      <div style={{ marginBottom: 64 }}>
+      <div>
         <Form
           onSubmit={handleSearch}
           style={{
@@ -51,10 +52,10 @@ class SearchBar extends Component {
             placeholder="Search..."
             renderLabel={item => <Label style={item.style} content={item.text} />}
             options={itemsToOptionsArray(
-              unionBy(selectedItems, autocompleteItems, 'id'),
+              unionBy(searchItems, autocompleteItems, 'id'),
               getTypeStyle,
             )}
-            value={selectedItems.map(item => item.id)}
+            value={searchIds}
             onSearchChange={this.handleSearchChange}
             onChange={this.handleChange}
             searchQuery={this.state.searchQuery}

@@ -3,7 +3,7 @@ import * as types from '../constants';
 
 const initialState = {
   autocomplete: { items: [], isLoading: false },
-  selectedItems: [],
+  searchItems: [],
 };
 
 const filters = (state = fromJS(initialState), action) => {
@@ -16,9 +16,14 @@ const filters = (state = fromJS(initialState), action) => {
         .setIn(['autocomplete', 'isLoading'], false);
     case types.FETCH_AUTOCOMPLETE_LIST_FAILURE:
       return state.setIn(['autocomplete', 'isLoading'], false);
-    case types.SET_SEARCH_SELECTED_ITEMS:
+    case types.FILTER_PUBLICATIONS_SUCCESS:
+    case types.FETCH_PUBLICATIONS_SUCCESS:
+      return state.get('searchItems').count() === 0
+        ? state.set('searchItems', fromJS(action.payload.query.searchItems))
+        : state;
+    case types.SET_SEARCH_ITEMS:
       return state
-        .set('selectedItems', fromJS(action.payload))
+        .set('searchItems', fromJS(action.payload))
         .setIn(['autocomplete', 'items'], fromJS([]));
     case types.CLEAR_AUTOCOMPLETE_LIST:
       return state.setIn(['autocomplete', 'items'], fromJS([]));

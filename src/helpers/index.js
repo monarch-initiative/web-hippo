@@ -12,13 +12,15 @@ export const splitSearchQuery = (searchQuery) => {
 export const getOffsetsArray = (annotations) => {
   if (!Array.isArray(annotations)) return [];
   return sortBy(
-    flatten(annotations.map(annotation => [
-      ...annotation.offsets.map(offset => ({
-        ...offset,
-        id: annotation.id,
-        type: annotation.type,
-      })),
-    ])),
+    flatten(
+      annotations.map(annotation => [
+        ...annotation.offsets.map(offset => ({
+          ...offset,
+          id: annotation.id,
+          type: annotation.type,
+        })),
+      ]),
+    ),
     ['startIndex'],
   );
 };
@@ -47,6 +49,8 @@ export const splitTextByOffsets = (text, offsets) => {
         isAnnotated: true,
         id: offset.id,
         type: offset.type,
+        startIndex,
+        endIndex,
       });
       currentIndex = endIndex;
     }

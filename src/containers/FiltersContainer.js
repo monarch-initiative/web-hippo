@@ -4,24 +4,28 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import toJS from '../helpers/toJS';
 import Filters from '../components/Filters';
+import FiltersBar from '../components/FiltersBar';
+
 import * as filterSelectors from '../selectors/filters';
 import * as publicationSelectors from '../selectors/publications';
+import * as searchSelectors from '../selectors/search';
 import { ENTITIES } from '../constants';
 
 class FiltersContainer extends Component {
+  state = { filtersBarExpanded: false };
   handleFilterChange = (type, { value, checked }) => {
-    const { searchItems, queryId, selectedFilterItems } = this.props;
-    let filterItems = [];
+    const { searchIds, queryId, selectedFilterIds } = this.props;
+    let filterIds = [];
     if (checked) {
-      filterItems = [...selectedFilterItems, { type, id: value }];
+      filterIds = [...selectedFilterIds, value];
     } else {
-      filterItems = selectedFilterItems.filter(item => item.id !== value);
+      filterIds = selectedFilterIds.filter(item => item !== value);
     }
 
     this.props.filterPublications({
-      searchItems,
+      searchIds,
       queryId,
-      filterItems,
+      filterIds,
     });
   };
 
@@ -29,19 +33,24 @@ class FiltersContainer extends Component {
 
   render() {
     return (
-      <div>
-        {ENTITIES.map(entity => (
-          <Filters
-            disabled={this.props.isLoading}
-            key={entity.type}
-            type={entity.type}
-            title={entity.title}
-            color={entity.color}
-            items={this.filterItemsByType(entity.type)}
-            onFilterChange={this.handleFilterChange}
-          />
-        ))}
-      </div>
+      <FiltersBar
+        visible={this.props.filterItems && this.props.filterItems.length > 0}
+        stickTo={this.props.stickTo}
+      >
+        <div>
+          {ENTITIES.map(entity => (
+            <Filters
+              disabled={this.props.isLoading}
+              key={entity.type}
+              type={entity.type}
+              title={entity.title}
+              color={entity.color}
+              items={this.filterItemsByType(entity.type)}
+              onFilterChange={this.handleFilterChange}
+            />
+          ))}
+        </div>
+      </FiltersBar>
     );
   }
 }
@@ -49,8 +58,8 @@ class FiltersContainer extends Component {
 const mapStateToProps = state => ({
   filterItems: filterSelectors.filterItems(state),
   isLoading: filterSelectors.isLoading(state),
-  selectedFilterItems: filterSelectors.selectedFilterItems(state),
-  searchItems: publicationSelectors.searchItems(state),
+  selectedFilterIds: filterSelectors.selectedFilterIds(state),
+  searchIds: searchSelectors.searchIds(state),
   queryId: publicationSelectors.queryId(state),
 });
 

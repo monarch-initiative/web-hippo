@@ -13,18 +13,18 @@ class SearchBarContainer extends Component {
   handleAutocompleteSearchChange = autocompleteSearchQuery =>
     this.props.fetchAutocompleteList(autocompleteSearchQuery);
 
-  handleSelectedItemsChange = selectedItemIds =>
-    this.props.setSelectedItems(unionBy(this.props.selectedItems, this.props.autocompleteItems, 'id').filter(item => selectedItemIds.indexOf(item.id) >= 0));
+  handleSelectedItemsChange = searchItemIds =>
+    this.props.setSearchItems(
+      unionBy(this.props.searchItems, this.props.autocompleteItems, 'id').filter(
+        item => searchItemIds.indexOf(item.id) >= 0,
+      ),
+    );
 
   handleSearch = () => {
-    const { selectedItems } = this.props;
-    if (!Array.isArray(selectedItems) || selectedItems.length === 0) return;
-
-    const searchItems = selectedItems.map(item => ({
-      id: item.id,
-      type: item.type,
-    }));
-    this.props.fetchPublications(searchItems);
+    const { searchIds } = this.props;
+    if (!Array.isArray(searchIds) || searchIds.length === 0) return;
+    this.props.fetchPublications(searchIds);
+    this.props.history.push(`/query/${searchIds.join(',')}`);
   };
 
   render() {
@@ -43,7 +43,8 @@ const mapStateToProps = state => ({
   isSearchLoading: publicationSelectors.isLoading(state),
   isAutocompleteLoading: searchSelectors.isAutocompleteLoading(state),
   autocompleteItems: searchSelectors.autocompleteItems(state),
-  selectedItems: searchSelectors.selectedItems(state),
+  searchItems: searchSelectors.searchItems(state),
+  searchIds: searchSelectors.searchIds(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);

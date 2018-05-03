@@ -8,35 +8,19 @@ import toJS from '../helpers/toJS';
 import Home from '../components/Home';
 
 class HomeContainer extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.props.pagination &&
-      nextProps.pagination &&
-      this.props.pagination.pageNo !== nextProps.pagination.pageNo &&
-      !nextProps.isError
-    ) {
-      window.scrollTo(0, 0);
+  componentDidMount() {
+    if (this.props.match.params.searchIds) {
+      this.props.fetchPublications(this.props.match.params.searchIds.split(','));
     }
   }
-  handlePageChange = pageNo =>
-    this.props.fetchPublicationsPage(
-      this.props.searchItems,
-      this.props.selectedFilterItems,
-      this.props.queryId,
-      pageNo,
-    );
 
   render() {
-    return <Home {...this.props} handlePageChange={this.handlePageChange} />;
+    return <Home {...this.props} />;
   }
 }
 
 const mapStateToProps = state => ({
   publicationItems: publicationSelectors.getPublicationItems(state),
-  selectedFilterItems: filterSelectors.selectedFilterItems(state),
-  filterItems: filterSelectors.filterItems(state),
-  searchItems: publicationSelectors.searchItems(state),
-  queryId: publicationSelectors.queryId(state),
   isLoading: publicationSelectors.isLoading(state),
   isError: publicationSelectors.isError(state) || filterSelectors.isError(state),
   pagination: publicationSelectors.pagination(state),

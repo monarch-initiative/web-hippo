@@ -1,28 +1,24 @@
 /* eslint  react/no-array-index-key: "off" */
 import React from 'react';
-import styled from 'styled-components';
+import AnnotationContainer from '../containers/AnnotationContainer';
 import { getOffsetsArray, splitTextByOffsets, getEntityType } from '../helpers';
 
-const Annotated = styled.a`
-  border-bottom: 3px double;
-  color: ${props => props.color};
-`;
-
-export default function ArticleAbstractViewer({ articleAbstract, annotations }) {
+export default function ArticleAbstractViewer({ pmid, articleAbstract, annotations }) {
   const articleAbstractArray = splitTextByOffsets(articleAbstract, getOffsetsArray(annotations));
   return (
     <p>
       {articleAbstractArray.map(
         (item, index) =>
           (item.isAnnotated ? (
-            <Annotated
+            <AnnotationContainer
               key={index}
+              pmid={pmid}
+              annotation={{ id: item.id, startIndex: item.startIndex, endIndex: item.endIndex }}
               href={getEntityType(item.type).href(item.id)}
-              target="_blank"
               color={getEntityType(item.type).color}
             >
               {item.text}
-            </Annotated>
+            </AnnotationContainer>
           ) : (
             item.text
           )),
