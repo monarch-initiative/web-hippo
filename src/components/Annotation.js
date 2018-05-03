@@ -3,9 +3,9 @@ import { Button, Grid, Popup } from 'semantic-ui-react';
 
 const Annotation = ({ children, color, href, showFeedback, isPending, handleFeedback }) => (
   <Popup
+    hoverable
     wide
     trigger={<a style={{ borderBottom: '3px double', cursor: 'pointer', color }}>{children}</a>}
-    on="click"
   >
     <Grid divided>
       <Grid.Column>
