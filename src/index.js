@@ -7,6 +7,7 @@ import { apiMiddleware } from 'redux-api-middleware';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createLogger } from 'redux-logger';
+import 'core-js/shim';
 import App from './App';
 import reducer from './reducers';
 import './index.css';
