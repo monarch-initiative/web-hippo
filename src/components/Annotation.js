@@ -18,7 +18,6 @@ const Annotation = ({ children, color, href, showFeedback, isPending, handleFeed
             icon="thumbs up"
             onClick={() => handleFeedback('good')}
           />,
-
           <Button
             disabled={isPending}
             key="bad"
