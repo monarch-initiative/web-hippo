@@ -8,7 +8,6 @@ import FiltersBar from '../components/FiltersBar';
 
 import * as filterSelectors from '../selectors/filters';
 import * as publicationSelectors from '../selectors/publications';
-import * as searchSelectors from '../selectors/search';
 import { ENTITIES } from '../constants';
 
 class FiltersContainer extends Component {
@@ -56,7 +55,7 @@ const mapStateToProps = state => ({
   filterItems: filterSelectors.filterItems(state),
   isLoading: filterSelectors.isLoading(state),
   selectedFilterIds: filterSelectors.selectedFilterIds(state),
-  searchIds: searchSelectors.searchIds(state),
+  searchIds: publicationSelectors.searchIds(state),
   queryId: publicationSelectors.queryId(state),
 });
 

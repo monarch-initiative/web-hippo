@@ -6,7 +6,7 @@ const initialState = {
   error: false,
   items: null,
   pagination: null,
-  queryId: null,
+  query: null,
 };
 const publications = (state = fromJS(initialState), action) => {
   switch (action.type) {
@@ -20,7 +20,7 @@ const publications = (state = fromJS(initialState), action) => {
         .set('isLoading', false)
         .set('items', fromJS(action.payload.articles))
         .set('pagination', fromJS(action.payload.pagination))
-        .set('queryId', action.payload.query.queryId);
+        .set('query', fromJS(action.payload.query));
     case types.FILTER_PUBLICATIONS_SUCCESS:
       return state
         .set('items', fromJS(action.payload.articles))
