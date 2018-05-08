@@ -1,12 +1,10 @@
 import React from 'react';
-import { Rail, Sticky } from 'semantic-ui-react';
+import { Rail } from 'semantic-ui-react';
 
-export default function FiltersBar({ children, stickTo }) {
+export default function FiltersBar({ children }) {
   return (
     <Rail position="left">
-      <Sticky active={!!stickTo} context={stickTo}>
-        <div style={{ paddingTop: 50 }}>{children}</div>
-      </Sticky>
+      <div>{children}</div>
     </Rail>
   );
 }

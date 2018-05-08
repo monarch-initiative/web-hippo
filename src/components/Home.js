@@ -24,19 +24,12 @@ class Home extends Component {
     this.setState({ height: window.innerHeight });
   };
 
-  handleContextRef = (ref) => {
-    this.stickTo = ref;
-  };
-
   render() {
     const { isLoading, isError, publicationItems, pagination } = this.props;
     return (
       <div>
         <NavBar />
-        <div
-          ref={this.handleContextRef}
-          style={{ minHeight: this.state.height - 300, marginBottom: '5em' }}
-        >
+        <div style={{ minHeight: this.state.height - 300, marginBottom: '5em' }}>
           <Grid centered style={{ marginTop: '8em' }}>
             <Grid.Row>
               <Grid.Column width={8}>

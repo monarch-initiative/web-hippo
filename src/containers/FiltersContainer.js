@@ -33,10 +33,7 @@ class FiltersContainer extends Component {
 
   render() {
     return (
-      <FiltersBar
-        visible={this.props.filterItems && this.props.filterItems.length > 0}
-        stickTo={this.props.stickTo}
-      >
+      <FiltersBar visible={this.props.filterItems && this.props.filterItems.length > 0}>
         <div>
           {ENTITIES.map(entity => (
             <Filters
