@@ -18,9 +18,7 @@ const filters = (state = fromJS(initialState), action) => {
       return state.setIn(['autocomplete', 'isLoading'], false);
     case types.FILTER_PUBLICATIONS_SUCCESS:
     case types.FETCH_PUBLICATIONS_SUCCESS:
-      return state.get('searchItems').count() === 0
-        ? state.set('searchItems', fromJS(action.payload.query.searchItems))
-        : state;
+      return state.set('searchItems', fromJS(action.payload.query.searchItems));
     case types.SET_SEARCH_ITEMS:
       return state
         .set('searchItems', fromJS(action.payload))
