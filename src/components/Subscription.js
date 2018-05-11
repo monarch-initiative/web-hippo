@@ -14,7 +14,7 @@ export default function Subscription({
     <div style={{ marginBottom: 30 }}>
       <Menu text>
         <Menu.Item onClick={toggleSubscriptionForm} position="right">
-          <Icon name="mail" />Subscribe
+          <Icon name="mail" />Search subscription
         </Menu.Item>
       </Menu>
 
