@@ -7,6 +7,7 @@ export default function NavBar() {
       <Container>
         <Menu.Item header>Hippo</Menu.Item>
       </Container>
+      <Menu.Item>Version 0.5 BETA</Menu.Item>
     </Menu>
   );
 }

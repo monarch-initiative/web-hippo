@@ -12,18 +12,14 @@ const renderError = ({ touched, error }) =>
     </Label>
   ));
 
-const renderField = ({
-  input, label, type, meta,
-}) => (
+const renderField = ({ input, label, type, meta }) => (
   <Form.Field>
     <Input {...input} placeholder={label} type={type} />
     {renderError(meta)}
   </Form.Field>
 );
 
-const renderOptions = ({
-  input, options, label, meta,
-}) => (
+const renderOptions = ({ input, options, label, meta }) => (
   <Form.Field>
     <Select
       fluid
@@ -38,16 +34,14 @@ const renderOptions = ({
 );
 
 const SubscriptionForm = (props) => {
-  const {
-    handleSubmit, onSubscribe, onCancel, isSubscribing, isSubscribed, isError,
-  } = props;
+  const { handleSubmit, onSubscribe, onCancel, isSubscribing, isSubscribed, isError } = props;
   return (
     <form className="ui form" onSubmit={handleSubmit(onSubscribe)}>
       <Field
         name="searchName"
         component={renderField}
         type="text"
-        label="Name"
+        label="Search name"
         required
         validate={[isRequired]}
       />

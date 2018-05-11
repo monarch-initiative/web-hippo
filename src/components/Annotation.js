@@ -14,7 +14,6 @@ const Annotation = ({ children, color, href, showFeedback, isPending, handleFeed
             disabled={isPending}
             key="good"
             circular
-            positive
             icon="thumbs up"
             onClick={() => handleFeedback('good')}
           />,
@@ -22,7 +21,6 @@ const Annotation = ({ children, color, href, showFeedback, isPending, handleFeed
             disabled={isPending}
             key="bad"
             circular
-            negative
             icon="thumbs down"
             onClick={() => handleFeedback('bad')}
           />,
