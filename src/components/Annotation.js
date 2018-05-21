@@ -1,33 +1,36 @@
 import React from 'react';
-import { Button, Grid, Popup } from 'semantic-ui-react';
+import { Popup, List, Icon } from 'semantic-ui-react';
+import FeedbackButtons from './FeedbackButtons';
+import AnnotatedText from './AnnotatedText';
+import { getEntityType } from '../helpers';
 
-const Annotation = ({ children, color, href, showFeedback, isPending, handleFeedback }) => (
+const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlights }) => (
   <Popup
     hoverable
     wide
-    trigger={<a style={{ borderBottom: '3px double', cursor: 'pointer', color }}>{children}</a>}
+    trigger={<AnnotatedText highlightsCount={highlights.length}>{children}</AnnotatedText>}
   >
-    <Grid divided>
-      <Grid.Column>
-        {showFeedback && [
-          <Button
-            disabled={isPending}
-            key="good"
-            circular
-            icon="thumbs up"
-            onClick={() => handleFeedback('good')}
-          />,
-          <Button
-            disabled={isPending}
-            key="bad"
-            circular
-            icon="thumbs down"
-            onClick={() => handleFeedback('bad')}
-          />,
-        ]}
-        <Button circular icon="linkify" as="a" href={href} target="_blank" />
-      </Grid.Column>
-    </Grid>
+    <List divided relaxed>
+      {highlights.map(({ feedbackId, link, type, text, description }) => (
+        <List.Item key={feedbackId}>
+          <List.Content>
+            <List.Header>
+              <span style={{ color: getEntityType(type).color }}>{text} </span>
+              <a href={link} target="_blank">
+                <Icon name="external" />
+              </a>
+            </List.Header>
+            <List.Description>{description}</List.Description>
+            <FeedbackButtons
+              showFeedback={showFeedback}
+              feedbackId={feedbackId}
+              isPending={isPending}
+              handleFeedback={handleFeedback}
+            />
+          </List.Content>
+        </List.Item>
+      ))}
+    </List>
   </Popup>
 );
 
