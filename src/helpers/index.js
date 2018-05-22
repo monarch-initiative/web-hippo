@@ -1,4 +1,4 @@
-import { sortBy } from 'lodash';
+import { sortBy, groupBy } from 'lodash';
 import { ENTITIES } from '../constants';
 
 export const splitTextByAnnotations = (text, annotations) => {
@@ -51,3 +51,9 @@ export const itemsToOptionsArray = (items, getTypeStyle) =>
     : []);
 
 export const getEntityType = type => ENTITIES.find(entity => entity.type === type);
+
+export const getCountOfTypes = (highlights) => {
+  if (!Array.isArray(highlights) || highlights.length === 0) return 0;
+  const groupedByType = groupBy(highlights, h => h.type);
+  return Object.keys(groupedByType).length;
+};

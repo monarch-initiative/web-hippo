@@ -2,13 +2,15 @@ import React from 'react';
 import { Popup, List, Icon } from 'semantic-ui-react';
 import FeedbackButtons from './FeedbackButtons';
 import AnnotatedText from './AnnotatedText';
-import { getEntityType } from '../helpers';
+import { getEntityType, getCountOfTypes } from '../helpers';
 
 const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlights }) => (
   <Popup
     hoverable
     wide
-    trigger={<AnnotatedText highlightsCount={highlights.length}>{children}</AnnotatedText>}
+    trigger={
+      <AnnotatedText highlightsCount={getCountOfTypes(highlights)}>{children}</AnnotatedText>
+    }
   >
     <List divided relaxed>
       {highlights.map(({ feedbackId, link, type, text, description }) => (
@@ -20,7 +22,7 @@ const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlig
                 <Icon name="external" />
               </a>
             </List.Header>
-            <List.Description>{description}</List.Description>
+            <List.Description style={{ paddingTop: 10, paddingBottom: 10 }} content={description} />
             <FeedbackButtons
               showFeedback={showFeedback}
               feedbackId={feedbackId}

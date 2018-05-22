@@ -1,4 +1,4 @@
-import { splitTextByAnnotations } from '.';
+import { splitTextByAnnotations, getCountOfTypes } from '.';
 
 describe('splitTextByAnnotations', () => {
   it('should handle empty text', () => {
@@ -43,5 +43,25 @@ describe('splitTextByAnnotations', () => {
       expect.objectContaining({ text: 'Text', isAnnotated: true }),
       { text: ' goes here', isAnnotated: false },
     ]);
+  });
+});
+
+describe('getCountOfTypes', () => {
+  it('should handle empty array', () => {
+    expect(getCountOfTypes([])).toEqual(0);
+  });
+
+  it('should handle empty parameter', () => {
+    expect(getCountOfTypes()).toEqual(0);
+  });
+
+  it('Should handle duplicates', () => {
+    expect(getCountOfTypes([{ type: 'G' }, { type: 'G' }])).toEqual(1);
+  });
+
+  it('Should handle normal cases', () => {
+    expect(getCountOfTypes([{ type: 'G' }, { type: 'H' }])).toEqual(2);
+    expect(getCountOfTypes([{ type: 'G' }, { type: 'G' }, { type: 'H' }])).toEqual(2);
+    expect(getCountOfTypes([{ type: 'G' }, { type: 'H' }, { type: 'D' }])).toEqual(3);
   });
 });
