@@ -19,12 +19,12 @@ const TrippleAnnotatedText = styled(BaseAnnotatedText)`
   border-bottom-style: solid;
 `;
 
-const AnnotatedText = ({ highlightsCount, children, ...restOfProps }) => {
-  if (highlightsCount === 2) {
+const AnnotatedText = ({ typesCount, children, ...restOfProps }) => {
+  if (typesCount === 2) {
     return <DoubleAnnotatedText {...restOfProps}>{children}</DoubleAnnotatedText>;
   }
 
-  if (highlightsCount >= 3) {
+  if (typesCount >= 3) {
     return <TrippleAnnotatedText {...restOfProps}>{children}</TrippleAnnotatedText>;
   }
 

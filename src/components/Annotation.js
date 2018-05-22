@@ -8,9 +8,7 @@ const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlig
   <Popup
     hoverable
     wide
-    trigger={
-      <AnnotatedText highlightsCount={getCountOfTypes(highlights)}>{children}</AnnotatedText>
-    }
+    trigger={<AnnotatedText typesCount={getCountOfTypes(highlights)}>{children}</AnnotatedText>}
   >
     <List divided relaxed>
       {highlights.map(({ feedbackId, link, type, text, description }) => (
