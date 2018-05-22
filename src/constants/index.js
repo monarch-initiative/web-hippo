@@ -48,4 +48,14 @@ export const ENTITIES = [
     title: 'Diseases',
     color: 'red',
   },
+  {
+    type: 'DRUG',
+    title: 'Drugs',
+    color: 'pink',
+  },
+  {
+    type: 'CHEMICAL',
+    title: 'Chemicals',
+    color: 'green',
+  },
 ];
