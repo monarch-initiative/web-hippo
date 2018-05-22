@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const BaseAnnotatedText = styled.span`
   border-bottom-width: 2px;
   border-bottom-color: #3b82c7;
-  display: inline-block;
-  line-height: 1.5;
   cursor: help;
 `;
 
