@@ -57,3 +57,5 @@ export const getCountOfTypes = (highlights) => {
   const groupedByType = groupBy(highlights, h => h.type);
   return Object.keys(groupedByType).length;
 };
+
+export const getItemById = (items, id) => items.find(item => item.id === id);

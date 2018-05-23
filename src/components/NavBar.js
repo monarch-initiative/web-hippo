@@ -1,13 +1,18 @@
 import React from 'react';
-import { Container, Menu } from 'semantic-ui-react';
+import { Container, Menu, Icon } from 'semantic-ui-react';
 
-export default function NavBar() {
+export default function NavBar({ showFilters, onFiltersClick }) {
   return (
-    <Menu inverted>
+    <Menu inverted style={{ marginBottom: 0, borderRadius: 0 }}>
       <Container>
-        <Menu.Item header>Hippo</Menu.Item>
+        {showFilters && (
+          <Menu.Item header onClick={onFiltersClick}>
+            <Icon name="filter" />
+            Filters
+          </Menu.Item>
+        )}
       </Container>
-      <Menu.Item>Version 0.5 BETA</Menu.Item>
+      <Menu.Item>Hippo. Version 0.6 BETA</Menu.Item>
     </Menu>
   );
 }
