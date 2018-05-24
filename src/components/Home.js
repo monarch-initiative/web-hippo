@@ -10,7 +10,10 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 
 class Home extends Component {
-  state = { height: window.innerHeight, showFilters: false };
+  state = {
+    height: window.innerHeight,
+    showFilters: window.matchMedia('(min-width: 1430px)').matches,
+  };
 
   componentDidMount() {
     window.addEventListener('resize', this.updateHeight);
