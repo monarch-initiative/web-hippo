@@ -8,7 +8,7 @@ clean_app_name=${app_name:4}
 # Build for sandbox, but pointing to real Api 
 rm -rf build
 
-REACT_APP_BASE_URL=https://phenomics.kccg.garvan.org.au/search-engine  CI=true npm run build > build.txt 2>&1
+REACT_APP_BASE_URL=https://phenomics-dev.kccg.garvan.org.au/search-engine  CI=true npm run build > build.txt 2>&1
 mkdir -p $branch_name
 cp -R build/* $branch_name
 

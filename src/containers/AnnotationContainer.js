@@ -6,12 +6,10 @@ import * as feedbackSelectors from '../selectors/feedback';
 import toJS from '../helpers/toJS';
 import Annotation from '../components/Annotation';
 
-const feedbackId = props => `${props.pmid}${props.annotation.id}${props.annotation.startIndex}`;
-
 class AnnotationContainer extends Component {
-  handleFeedback = (feedback) => {
-    const { pmid, annotation, submitFeedback } = this.props;
-    submitFeedback(feedbackId(this.props), { pmid, annotation, feedback });
+  handleFeedback = (feedbackId, feedback) => {
+    const { submitFeedback } = this.props;
+    submitFeedback(feedbackId, feedback);
   };
 
   render() {
@@ -19,10 +17,10 @@ class AnnotationContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   isPending: feedbackSelectors.isPending(state),
   isError: feedbackSelectors.isError(state),
-  showFeedback: !feedbackSelectors.isFeedbackPosted(state, feedbackId(ownProps)),
+  showFeedback: feedbackId => !feedbackSelectors.isFeedbackPosted(state, feedbackId),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);

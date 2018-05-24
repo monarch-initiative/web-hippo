@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Header, Checkbox, Segment } from 'semantic-ui-react';
+import { Checkbox, Tab } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-const NUMBER_OF_VISIBLE_FILTER_ITEMS = 10;
+const NUMBER_OF_VISIBLE_FILTER_ITEMS = 50;
 
 const Link = styled.a`
   cursor: pointer;
@@ -50,25 +50,23 @@ class Filters extends Component {
   };
 
   render() {
-    const { onFilterChange, type, title, color, items, disabled } = this.props;
+    const { onFilterChange, items, disabled, selectedFilterIds } = this.props;
     if (!Array.isArray(items) || items.length === 0) return null;
     return (
-      <div style={{ marginBottom: 30 }}>
-        <Header as="h4">{title}</Header>
-        <Segment color={color} padded disabled={disabled}>
-          {this.getFilterItems().map(filterItem => (
-            <div key={filterItem.id}>
-              <Checkbox
-                disabled={disabled || filterItem.filteredArticleCount === 0}
-                value={filterItem.id}
-                onChange={(event, data) => onFilterChange(type, data)}
-                label={`${filterItem.text} (${filterItem.filteredArticleCount})`}
-              />
-            </div>
-          ))}
-          {this.renderMoreFilters()}
-        </Segment>
-      </div>
+      <Tab.Pane disabled={disabled}>
+        {this.getFilterItems().map(filterItem => (
+          <div key={filterItem.id}>
+            <Checkbox
+              disabled={disabled || filterItem.filteredArticleCount === 0}
+              value={filterItem.id}
+              checked={selectedFilterIds.includes(filterItem.id)}
+              onChange={(event, data) => onFilterChange(data)}
+              label={`${filterItem.text} (${filterItem.filteredArticleCount})`}
+            />
+          </div>
+        ))}
+        {this.renderMoreFilters()}
+      </Tab.Pane>
     );
   }
 }

@@ -1,7 +1,7 @@
 {
   "homepage": ".",
   "name": "web-pubmed-browser",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -33,11 +33,13 @@
     "styled-components": "^2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=https://phenomics.kccg.garvan.org.au/search-engine react-scripts start",
+    "start":
+      "REACT_APP_BASE_URL=https://phenomics-dev.kccg.garvan.org.au/search-engine react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "eslint": "node node_modules/eslint/bin/eslint.js --config node_modules/eslint-config-react-app/index.js src/"
+    "eslint":
+      "node node_modules/eslint/bin/eslint.js --config node_modules/eslint-config-react-app/index.js src/"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

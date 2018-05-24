@@ -1,41 +1,17 @@
-import { sortBy, flatten } from 'lodash';
+import { sortBy, groupBy } from 'lodash';
 import { ENTITIES } from '../constants';
 
-export const splitSearchQuery = (searchQuery) => {
-  const searchArray = searchQuery
-    .split(/[\s,]+/)
-    .map(item => item.trim())
-    .filter(Boolean);
-  return searchArray;
-};
-
-export const getOffsetsArray = (annotations) => {
-  if (!Array.isArray(annotations)) return [];
-  return sortBy(
-    flatten(
-      annotations.map(annotation => [
-        ...annotation.offsets.map(offset => ({
-          ...offset,
-          id: annotation.id,
-          type: annotation.type,
-        })),
-      ]),
-    ),
-    ['startIndex'],
-  );
-};
-
-export const splitTextByOffsets = (text, offsets) => {
+export const splitTextByAnnotations = (text, annotations) => {
   if (!text || !text.length) return [];
-  if (!Array.isArray(offsets) || !offsets.length) return [{ text, isAnnotated: false }];
+  if (!Array.isArray(annotations) || !annotations.length) return [{ text, isAnnotated: false }];
 
   let currentIndex = 0;
   const maxLen = text.length;
   const result = [];
 
-  offsets.forEach((offset) => {
-    const startIndex = Math.max(offset.startIndex, 0);
-    const endIndex = Math.min(offset.endIndex, maxLen);
+  sortBy(annotations, ['startIndex']).forEach((annotation) => {
+    const startIndex = Math.max(annotation.startIndex, 0);
+    const endIndex = Math.min(annotation.endIndex, maxLen);
     if (startIndex >= currentIndex && endIndex > startIndex && currentIndex < maxLen) {
       if (currentIndex < startIndex) {
         result.push({
@@ -47,10 +23,7 @@ export const splitTextByOffsets = (text, offsets) => {
       result.push({
         text: text.substring(startIndex, endIndex),
         isAnnotated: true,
-        id: offset.id,
-        type: offset.type,
-        startIndex,
-        endIndex,
+        highlights: annotation.highlights,
       });
       currentIndex = endIndex;
     }
@@ -78,3 +51,11 @@ export const itemsToOptionsArray = (items, getTypeStyle) =>
     : []);
 
 export const getEntityType = type => ENTITIES.find(entity => entity.type === type);
+
+export const getCountOfTypes = (highlights) => {
+  if (!Array.isArray(highlights) || highlights.length === 0) return 0;
+  const groupedByType = groupBy(highlights, h => h.type);
+  return Object.keys(groupedByType).length;
+};
+
+export const getItemById = (items, id) => items.find(item => item.id === id);

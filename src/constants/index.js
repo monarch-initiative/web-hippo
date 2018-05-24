@@ -37,18 +37,25 @@ export const ENTITIES = [
     type: 'GENE',
     title: 'Genes',
     color: 'blue',
-    href: id => `https://monarchinitiative.org/HGNC:${id}`,
   },
   {
     type: 'PHENOTYPE',
     title: 'Phenotypes',
     color: 'orange',
-    href: id => `https://monarchinitiative.org/${id}`,
   },
   {
     type: 'DISEASE',
     title: 'Diseases',
     color: 'red',
-    href: id => `https://monarchinitiative.org/${id}`,
+  },
+  {
+    type: 'DRUG',
+    title: 'Drugs',
+    color: 'pink',
+  },
+  {
+    type: 'CHEMICAL',
+    title: 'Chemicals',
+    color: 'green',
   },
 ];
