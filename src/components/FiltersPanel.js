@@ -10,6 +10,30 @@ export default function FiltersPanel({
   isLoading,
   onFilterChange,
 }) {
+  let defaultTabActiveIndex = null;
+
+  const tabPanes = ENTITIES.map((entity, index) => {
+    const filterItemsByType = filterItems.filter(item => item.type === entity.type);
+    if (filterItemsByType.length === 0) return null;
+
+    defaultTabActiveIndex = defaultTabActiveIndex === null ? index : defaultTabActiveIndex;
+    return {
+      menuItem: {
+        key: entity.title,
+        content: entity.title,
+        color: entity.color,
+      },
+      render: () => (
+        <Filters
+          disabled={isLoading}
+          items={filterItemsByType}
+          selectedFilterIds={selectedFilterIds}
+          onFilterChange={onFilterChange}
+        />
+      ),
+    };
+  });
+
   return (
     <div style={{ padding: 10 }}>
       <AppliedFilters
@@ -21,26 +45,8 @@ export default function FiltersPanel({
 
       <Tab
         menu={{ attached: true, tabular: true }}
-        panes={ENTITIES.map((entity) => {
-          const filterItemsByType = filterItems.filter(item => item.type === entity.type);
-          return filterItemsByType.length > 0
-            ? {
-              menuItem: {
-                key: entity.title,
-                content: entity.title,
-                color: entity.color,
-              },
-              render: () => (
-                <Filters
-                  disabled={isLoading}
-                  items={filterItemsByType}
-                  selectedFilterIds={selectedFilterIds}
-                  onFilterChange={onFilterChange}
-                />
-              ),
-            }
-            : null;
-        })}
+        defaultActiveIndex={defaultTabActiveIndex}
+        panes={tabPanes}
       />
     </div>
   );
