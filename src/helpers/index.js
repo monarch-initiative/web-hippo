@@ -46,6 +46,7 @@ export const itemsToOptionsArray = (items, getTypeStyle) =>
       value: item.id,
       type: item.type,
       text: item.text,
+      description: item.type,
       style: getTypeStyle(item.type),
     }))
     : []);
