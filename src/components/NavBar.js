@@ -12,7 +12,7 @@ export default function NavBar({ showFilters, onFiltersClick }) {
           </Menu.Item>
         )}
       </Container>
-      <Menu.Item>Hippo. Version 0.6.1 BETA</Menu.Item>
+      <Menu.Item>Hippo. Version 0.6.2 BETA</Menu.Item>
     </Menu>
   );
 }
