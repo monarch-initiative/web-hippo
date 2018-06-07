@@ -6,7 +6,7 @@ import Team from '../../components/Team';
 
 export default ({ height }) => (
   <div>
-    <Grid centered style={{ minHeight: height - 600, paddingTop: '10%' }}>
+    <Grid centered style={{ minHeight: height - 500, paddingTop: '10%' }}>
       <Grid.Row>
         <Grid.Column textAlign="center">
           <h1>HIPPO</h1>
