@@ -19,7 +19,7 @@ export default ({ height }) => (
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign="center">
-          <Link to="/query/6001">Take a tour</Link>
+          <Link to="/tutorial">Take a tour</Link>
         </Grid.Column>
       </Grid.Row>
     </Grid>
