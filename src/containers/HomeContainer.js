@@ -9,13 +9,29 @@ import Home from '../components/Home';
 
 class HomeContainer extends Component {
   componentDidMount() {
-    if (this.props.match.params.searchIds) {
-      this.props.fetchPublications(this.props.match.params.searchIds.split(','));
+    this.handleQueryString(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.searchIds !== this.props.match.params.searchIds) {
+      this.handleQueryString(nextProps);
+    }
+  }
+
+  handleQueryString({
+    match: {
+      params: { searchIds },
+    },
+  }) {
+    if (searchIds) {
+      this.props.fetchPublications(searchIds.split(','));
+    } else {
+      this.props.clearStore();
     }
   }
 
   render() {
-    return <Home {...this.props} />;
+    return <Home {...this.props} showResultLayout={!!this.props.match.params.searchIds} />;
   }
 }
 

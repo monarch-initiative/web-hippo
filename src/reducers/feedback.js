@@ -9,6 +9,8 @@ const initialState = Map({
 
 const feedback = (state = initialState, action) => {
   switch (action.type) {
+    case types.CLEAR_STORE:
+      return initialState;
     case types.FEEDBACK_REQUEST:
     case types.FEEDBACK_FAILURE:
       return action.error

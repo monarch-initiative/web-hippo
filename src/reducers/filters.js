@@ -1,17 +1,18 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants';
 
-const initialState = {
+const initialState = fromJS({
   isLoading: false,
   error: false,
   items: [],
   selectedIds: [],
-};
+});
 
-const filters = (state = fromJS(initialState), action) => {
+const filters = (state = initialState, action) => {
   switch (action.type) {
+    case types.CLEAR_STORE:
     case types.FETCH_PUBLICATIONS_REQUEST:
-      return fromJS(initialState);
+      return initialState;
     case types.FILTER_PUBLICATIONS_REQUEST:
     case types.FILTER_PUBLICATIONS_FAILURE:
       return action.error
