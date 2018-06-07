@@ -1,12 +1,13 @@
 import React from 'react';
-import { Card, Image, Header, Container } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Card, Image, Header, Container, Button } from 'semantic-ui-react';
 import step1 from '../assets/tutorial/step1.png';
 import step2 from '../assets/tutorial/step2.png';
 import step3 from '../assets/tutorial/step3.png';
 import step4 from '../assets/tutorial/step4.png';
 
 export default () => (
-  <Container text style={{ paddingTop: '5em' }}>
+  <Container text style={{ paddingTop: '5em', paddingBottom: '5em' }}>
     <Header>Welcome to the Monarch Hippo interactive browser</Header>
     <p>
       Do you often search for a phenotype, a gene symbol or a disease in Pubmed and try to find out
@@ -69,5 +70,9 @@ export default () => (
         </Card.Description>
       </Card.Content>
     </Card>
+    <Header>Excited to see this happen?</Header>
+    <Button as={Link} to="/query/HP:0001658,HP:0000822">
+      Try Now
+    </Button>
   </Container>
 );
