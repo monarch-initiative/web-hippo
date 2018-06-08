@@ -1,11 +1,8 @@
-/* eslint react/jsx-indent: "off" */
 import React, { Component } from 'react';
 import { Sidebar, Segment } from 'semantic-ui-react';
-import FiltersContainer from '../../containers/FiltersContainer';
-import NavBar from '../NavBar';
-import Footer from '../Footer';
-import ResultLayout from './ResultLayout';
-import LandingLayout from './LandingLayout';
+import FiltersContainer from '../containers/FiltersContainer';
+import NavBar from './NavBar';
+import Footer from './Footer';
 
 class Home extends Component {
   state = {
@@ -26,13 +23,13 @@ class Home extends Component {
   };
 
   render() {
-    const { isLoading, isError, publicationItems, showResultLayout } = this.props;
+    const { isLoading, isError, publicationItems, content } = this.props;
     const canRenderPublications = !isLoading && !isError && Array.isArray(publicationItems);
     const hasPublications = canRenderPublications && publicationItems.length > 0;
     return (
       <div>
         <NavBar
-          showFilters={showResultLayout && hasPublications}
+          showFilters={hasPublications}
           onFiltersClick={() => this.setState({ showFilters: !this.state.showFilters })}
         />
         <Sidebar.Pushable>
@@ -42,21 +39,17 @@ class Home extends Component {
             animation="overlay"
             width="wide"
             vertical
-            visible={showResultLayout && this.state.showFilters && hasPublications}
+            visible={this.state.showFilters && hasPublications}
           >
             {hasPublications && <FiltersContainer />}
           </Sidebar>
           <Sidebar.Pusher>
-            {showResultLayout && (
-              <ResultLayout
-                height={this.state.height}
-                {...this.props}
-                hasPublications={hasPublications}
-                canRenderPublications={canRenderPublications}
-              />
-            )}
-
-            {!showResultLayout && <LandingLayout height={this.state.height} />}
+            {content({
+              ...this.props,
+              height: this.state.height,
+              hasPublications,
+              canRenderPublications,
+            })}
             <Footer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

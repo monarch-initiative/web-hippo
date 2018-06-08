@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
 import * as publicationSelectors from '../selectors/publications';
 import * as filterSelectors from '../selectors/filters';
@@ -31,7 +32,7 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return <Home {...this.props} showResultLayout={!!this.props.match.params.searchIds} />;
+    return <Home {...this.props} />;
   }
 }
 
@@ -44,4 +45,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(toJS(HomeContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(HomeContainer)));

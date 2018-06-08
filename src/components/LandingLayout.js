@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-import SearchBarContainer from '../../containers/SearchBarContainer';
-import Team from '../../components/Team';
+import SearchBarContainer from '../containers/SearchBarContainer';
+import Team from '../components/Team';
 
 export default ({ height }) => (
   <div>

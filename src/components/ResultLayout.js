@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Message, Grid, Divider } from 'semantic-ui-react';
-import SearchBarContainer from '../../containers/SearchBarContainer';
-import SubscriptionContainer from '../../containers/SubscriptionContainer';
-import PaginationContainer from '../../containers/PaginationContainer';
-import Publications from '../Publications';
+import SearchBarContainer from '../containers/SearchBarContainer';
+import SubscriptionContainer from '../containers/SubscriptionContainer';
+import PaginationContainer from '../containers/PaginationContainer';
+import Publications from './Publications';
 
 export default ({
   publicationItems,
