@@ -22,10 +22,27 @@ export default function Footer() {
           target="_blank"
         />
       </Image.Group>
-      <Header
-        size="tiny"
-        subheader="The Kinghorn Centre for Clinical Genomics is supported generously by the Kinghorn Foundation. Monarch is supported generously by a NIH Office of the Director Grant #5R24OD011883, as well as by NIH-UDP: HHSN268201350036C, HHSN268201400093P, NCI/Leidos #15X143."
-      />
+      <Header size="tiny">
+        <Header.Subheader>
+          The Kinghorn Centre for Clinical Genomics is supported generously by the Kinghorn
+          Foundation. Monarch is supported generously by a NIH Office of the Director Grant
+          #5R24OD011883, as well as by NIH-UDP: HHSN268201350036C, HHSN268201400093P, NCI/Leidos
+          #15X143.
+        </Header.Subheader>
+        <Header.Subheader>
+          <a
+            href="https://thenounproject.com/search/?q=hippo&i=1189838#"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            “Hippo”
+          </a>{' '}
+          icon created by Made from the{' '}
+          <a href="https://thenounproject.com/" rel="noopener noreferrer" target="_blank">
+            Noun Project.
+          </a>
+        </Header.Subheader>
+      </Header>
     </Container>
   );
 }

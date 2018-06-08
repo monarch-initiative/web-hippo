@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import SearchBarContainer from '../containers/SearchBarContainer';
 import Team from '../components/Team';
+import logo from '../logo.svg';
 
-export default ({ height }) => (
+export default () => (
   <div>
-    <Grid centered style={{ minHeight: height - 500, paddingTop: '10%' }}>
+    <Grid centered style={{ paddingTop: '10%', paddingBottom: 50 }}>
       <Grid.Row>
-        <Grid.Column textAlign="center">
-          <h1>HIPPO</h1>
+        <Grid.Column width={8}>
+          <Image size="small" centered src={logo} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

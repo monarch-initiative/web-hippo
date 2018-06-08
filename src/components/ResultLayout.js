@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Message, Grid, Divider } from 'semantic-ui-react';
+import { Container, Message, Grid, Divider, Image } from 'semantic-ui-react';
 import SearchBarContainer from '../containers/SearchBarContainer';
 import SubscriptionContainer from '../containers/SubscriptionContainer';
 import PaginationContainer from '../containers/PaginationContainer';
 import Publications from './Publications';
+import logo from '../logo.svg';
 
 export default ({
   publicationItems,
@@ -14,9 +15,10 @@ export default ({
   height,
 }) => (
   <div style={{ minHeight: height - 300, marginBottom: '5em' }}>
-    <Grid centered style={{ marginTop: '8em' }}>
+    <Grid centered style={{ marginTop: '1em' }}>
       <Grid.Row>
         <Grid.Column width={8}>
+          <Image size="tiny" centered src={logo} />
           <SearchBarContainer />
           {isError && (
             <Message
