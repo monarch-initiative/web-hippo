@@ -6,6 +6,7 @@ import UnsubscribeContainer from './containers/UnsubscribeContainer';
 import TutorialPage from './components/TutorialPage';
 import ResultLayout from './components/ResultLayout';
 import LandingLayout from './components/LandingLayout';
+import Team from './components/Team';
 
 const App = () => (
   <HashRouter>
@@ -13,6 +14,7 @@ const App = () => (
       <Route path="/unsubscribe/:subscriptionId" component={UnsubscribeContainer} />
       <Route path="/query/:searchIds" component={() => <HomeContainer content={ResultLayout} />} />
       <Route path="/tutorial" component={() => <HomeContainer content={TutorialPage} />} />
+      <Route path="/team" component={() => <HomeContainer content={Team} />} />
       <Route path="/" component={() => <HomeContainer content={LandingLayout} />} />
     </Switch>
   </HashRouter>

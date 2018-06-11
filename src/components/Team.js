@@ -8,8 +8,8 @@ import tudor from '../assets/team/tudor.jpg';
 import mellisa from '../assets/team/mellisa.jpeg';
 import peter from '../assets/team/peter.png';
 
-export default () => (
-  <Grid container columns={3} centered style={{ marginBottom: '2em' }}>
+export default ({ height }) => (
+  <Grid container columns={3} centered style={{ minHeight: height - 200, paddingBottom: '2em', paddingTop: '2em' }}>
     <Grid.Row>
       <Grid.Column textAlign="center" width={16}>
         <Header as="h4">Meet the team</Header>
