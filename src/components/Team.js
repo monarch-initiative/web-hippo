@@ -6,7 +6,7 @@ import ali from '../assets/team/ali.jpg';
 import julie from '../assets/team/julie.jpeg';
 import tudor from '../assets/team/tudor.jpg';
 import mellisa from '../assets/team/mellisa.jpeg';
-import peter from '../assets/team/peter.png';
+import peter from '../assets/team/peter.jpeg';
 
 export default ({ height }) => (
   <Grid container columns={3} centered style={{ minHeight: height - 200, paddingBottom: '2em', paddingTop: '2em' }}>
