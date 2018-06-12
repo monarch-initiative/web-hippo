@@ -29,19 +29,6 @@ export default function Footer() {
           #5R24OD011883, as well as by NIH-UDP: HHSN268201350036C, HHSN268201400093P, NCI/Leidos
           #15X143.
         </Header.Subheader>
-        <Header.Subheader>
-          <a
-            href="https://thenounproject.com/search/?q=hippo&i=1189838#"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            “Hippo”
-          </a>{' '}
-          icon created by Made from the{' '}
-          <a href="https://thenounproject.com/" rel="noopener noreferrer" target="_blank">
-            Noun Project.
-          </a>
-        </Header.Subheader>
       </Header>
     </Container>
   );

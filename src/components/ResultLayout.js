@@ -14,7 +14,7 @@ export default ({
   hasPublications,
   height,
 }) => (
-  <div style={{ minHeight: height - 300, marginBottom: '5em' }}>
+  <div style={{ minHeight: height - 250, marginBottom: '5em' }}>
     <Grid centered style={{ marginTop: '1em' }}>
       <Grid.Row>
         <Grid.Column width={8}>

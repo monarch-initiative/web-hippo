@@ -9,7 +9,12 @@ import mellisa from '../assets/team/mellisa.jpeg';
 import peter from '../assets/team/peter.jpeg';
 
 export default ({ height }) => (
-  <Grid container columns={3} centered style={{ minHeight: height - 200, paddingBottom: '2em', paddingTop: '2em' }}>
+  <Grid
+    container
+    columns={3}
+    centered
+    style={{ minHeight: height - 150, paddingBottom: '2em', paddingTop: '2em' }}
+  >
     <Grid.Row>
       <Grid.Column textAlign="center" width={16}>
         <Header as="h4">Meet the team</Header>
