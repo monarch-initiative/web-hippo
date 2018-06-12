@@ -17,7 +17,7 @@ export default ({ height }) => (
   >
     <Grid.Row>
       <Grid.Column textAlign="center" width={16}>
-        <Header as="h4">Meet the team</Header>
+        <Header as="h2">Meet the team</Header>
       </Grid.Column>
     </Grid.Row>
     <Grid.Row>
