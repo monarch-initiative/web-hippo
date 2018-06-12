@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants';
 
-const initialState = {
+const initialState = fromJS({
   subscribing: false,
   subscribed: false,
 
@@ -9,11 +9,12 @@ const initialState = {
   unsubscribed: false,
 
   error: false,
-};
-const subscription = (state = fromJS(initialState), action) => {
+});
+const subscription = (state = initialState, action) => {
   switch (action.type) {
+    case types.CLEAR_STORE:
     case types.SUBSCRIPTION_CLEAR:
-      return fromJS(initialState);
+      return initialState;
     case types.SUBSCRIPTION_REQUEST:
       return action.error
         ? state

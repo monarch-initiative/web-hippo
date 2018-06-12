@@ -1,15 +1,17 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants';
 
-const initialState = {
+const initialState = fromJS({
   isLoading: false,
   error: false,
   items: null,
   pagination: null,
   query: null,
-};
-const publications = (state = fromJS(initialState), action) => {
+});
+const publications = (state = initialState, action) => {
   switch (action.type) {
+    case types.CLEAR_STORE:
+      return initialState;
     case types.FETCH_PUBLICATIONS_REQUEST:
     case types.FETCH_PUBLICATIONS_FAILURE:
       return action.error

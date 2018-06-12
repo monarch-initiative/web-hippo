@@ -84,5 +84,5 @@ echo "Send CP starting to Github: Request"
 curl -H "Authorization: token 2fa70040e61b6d5faaf08f9c382587b707711051" --request POST --data "{\"state\": \"success\", \"description\": \"Duplicate Code Detected - Click Details to review.\", \"target_url\": \"https://github.com/GenomeOne/$app_name/wiki/$cp_output_file_name\", \"context\": \"Duplicate Code Detector\"}" https://api.github.com/repos/GenomeOne/$app_name/statuses/${bamboo_repository_revision_number} > /dev/null
 echo "Send CP starting to Github: Success"
 
-# Send Demo UAT URL
-curl -H "Authorization: token 2fa70040e61b6d5faaf08f9c382587b707711051" --request POST --data "{\"state\": \"success\", \"description\": \"Demo UAT URL.\", \"target_url\": \"https://sandbox.genome.one/demo/uat/$app_name/$branch_name\", \"context\": \"Demo UAT URL\"}" https://api.github.com/repos/GenomeOne/$app_name/statuses/${bamboo_repository_revision_number} > /dev/null
+# Send Demo URL
+curl -H "Authorization: token 2fa70040e61b6d5faaf08f9c382587b707711051" --request POST --data "{\"state\": \"success\", \"description\": \"Demo URL.\", \"target_url\": \"https://sandbox.genome.one/demo/$app_name/$branch_name\", \"context\": \"Demo URL\"}" https://api.github.com/repos/GenomeOne/$app_name/statuses/${bamboo_repository_revision_number} > /dev/null
