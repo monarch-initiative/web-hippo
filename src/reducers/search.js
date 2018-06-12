@@ -1,13 +1,15 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants';
 
-const initialState = {
+const initialState = fromJS({
   autocomplete: { items: [], isLoading: false },
   searchItems: [],
-};
+});
 
-const filters = (state = fromJS(initialState), action) => {
+const filters = (state = initialState, action) => {
   switch (action.type) {
+    case types.CLEAR_STORE:
+      return initialState;
     case types.FETCH_AUTOCOMPLETE_LIST_REQUEST:
       return state.setIn(['autocomplete', 'isLoading'], !action.error);
     case types.FETCH_AUTOCOMPLETE_LIST_SUCCESS:

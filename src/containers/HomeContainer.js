@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
 import * as publicationSelectors from '../selectors/publications';
 import * as filterSelectors from '../selectors/filters';
@@ -9,8 +10,24 @@ import Home from '../components/Home';
 
 class HomeContainer extends Component {
   componentDidMount() {
-    if (this.props.match.params.searchIds) {
-      this.props.fetchPublications(this.props.match.params.searchIds.split(','));
+    this.handleQueryString(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.searchIds !== this.props.match.params.searchIds) {
+      this.handleQueryString(nextProps);
+    }
+  }
+
+  handleQueryString({
+    match: {
+      params: { searchIds },
+    },
+  }) {
+    if (searchIds) {
+      this.props.fetchPublications(searchIds.split(','));
+    } else {
+      this.props.clearStore();
     }
   }
 
@@ -28,4 +45,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(toJS(HomeContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(HomeContainer)));
