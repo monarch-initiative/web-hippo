@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab } from 'semantic-ui-react';
+import { Tab, Icon } from 'semantic-ui-react';
 import { ENTITIES } from '../constants';
 import Filters from './Filters';
 import AppliedFilters from './AppliedFilters';
@@ -26,9 +26,14 @@ export default class FiltersPanel extends Component {
           key: entity.title,
           content:
             (this.state.activeTabIndex === null && index === defaultActiveTabIndex) ||
-            index === this.state.activeTabIndex
-              ? entity.title
-              : entity.shortTitle,
+            index === this.state.activeTabIndex ? (
+                entity.title
+              ) : (
+                <span style={{ color: entity.color }}>
+                  {entity.shortTitle}
+                  <Icon name="triangle right" />
+                </span>
+              ),
           color: entity.color,
         },
         render: () => (

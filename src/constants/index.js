@@ -58,10 +58,4 @@ export const ENTITIES = [
     shortTitle: 'Dr',
     color: 'pink',
   },
-  {
-    type: 'CHEMICAL',
-    title: 'Chemicals',
-    shortTitle: 'C',
-    color: 'green',
-  },
 ];
