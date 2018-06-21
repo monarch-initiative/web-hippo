@@ -56,6 +56,6 @@ export const ENTITIES = [
     type: 'DRUG',
     title: 'Drugs',
     shortTitle: 'Dr',
-    color: 'pink',
+    color: 'green',
   },
 ];
