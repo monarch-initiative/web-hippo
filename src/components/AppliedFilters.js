@@ -11,7 +11,7 @@ export default function AppliedFilters({
   if (!Array.isArray(selectedFilterIds) || selectedFilterIds.length === 0) return null;
   return (
     <div style={{ padding: 10 }}>
-      <Header>Applied Filters :</Header>
+      <Header as="h4">Applied Filters :</Header>
       <Label.Group>
         {selectedFilterIds.map((id) => {
           const filterItem = getItemById(filterItems, id);
