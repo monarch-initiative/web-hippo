@@ -3,37 +3,35 @@ import { Tab, Icon } from 'semantic-ui-react';
 import { ENTITIES } from '../constants';
 import Filters from './Filters';
 import AppliedFilters from './AppliedFilters';
+import { findFirstEntityIndexOfItems } from '../helpers';
 
 export default class FiltersPanel extends Component {
   state = { activeTabIndex: null };
 
-  handleTabChange = (_e, { activeIndex }) => this.setState({ activeTabIndex: activeIndex });
+  handleTabChange = (_event, { activeIndex }) => this.setState({ activeTabIndex: activeIndex });
+
   render() {
     const { selectedFilterIds, filterItems, isLoading, onFilterChange } = this.props;
 
-    let defaultActiveTabIndex = null;
+    const defaultActiveTabIndex = findFirstEntityIndexOfItems(filterItems);
 
     const tabPanes = ENTITIES.map((entity, index) => {
       const filterItemsByType = filterItems.filter(item => item.type === entity.type);
 
       if (filterItemsByType.length === 0) return null;
 
-      if (defaultActiveTabIndex === null) {
-        defaultActiveTabIndex = index;
-      }
       return {
         menuItem: {
           key: entity.title,
           content:
-            (this.state.activeTabIndex === null && index === defaultActiveTabIndex) ||
-            index === this.state.activeTabIndex ? (
-                entity.title
-              ) : (
-                <span style={{ color: entity.color }}>
-                  {entity.shortTitle}
-                  <Icon name="triangle right" />
-                </span>
-              ),
+            index === (this.state.activeTabIndex || defaultActiveTabIndex) ? (
+              entity.title
+            ) : (
+              <span style={{ color: entity.color }}>
+                {entity.shortTitle}
+                <Icon name="triangle right" />
+              </span>
+            ),
           color: entity.color,
         },
         render: () => (
