@@ -37,26 +37,25 @@ export const ENTITIES = [
   {
     type: 'GENE',
     title: 'Genes',
+    shortTitle: 'G',
     color: 'blue',
   },
   {
     type: 'PHENOTYPE',
     title: 'Phenotypes',
+    shortTitle: 'P',
     color: 'orange',
   },
   {
     type: 'DISEASE',
     title: 'Diseases',
+    shortTitle: 'Di',
     color: 'red',
   },
   {
     type: 'DRUG',
     title: 'Drugs',
-    color: 'pink',
-  },
-  {
-    type: 'CHEMICAL',
-    title: 'Chemicals',
+    shortTitle: 'Dr',
     color: 'green',
   },
 ];

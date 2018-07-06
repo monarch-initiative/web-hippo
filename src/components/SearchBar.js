@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Button, Dropdown, Label } from 'semantic-ui-react';
 import { unionBy, debounce } from 'lodash';
-import { itemsToOptionsArray, getEntityType } from '../helpers';
+import { itemsToOptionsArray, getEntityByType } from '../helpers';
 
 const getTypeStyle = type => ({
-  color: getEntityType(type).color,
+  color: getEntityByType(type).color,
 });
 
 class SearchBar extends Component {

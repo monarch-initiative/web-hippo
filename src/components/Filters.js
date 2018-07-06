@@ -60,7 +60,7 @@ class Filters extends Component {
               disabled={disabled || filterItem.filteredArticleCount === 0}
               value={filterItem.id}
               checked={selectedFilterIds.includes(filterItem.id)}
-              onChange={(event, data) => onFilterChange(data)}
+              onChange={(_event, data) => onFilterChange(data)}
               label={`${filterItem.text} (${filterItem.filteredArticleCount})`}
             />
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Popup, List, Icon } from 'semantic-ui-react';
 import FeedbackButtons from './FeedbackButtons';
 import AnnotatedText from './AnnotatedText';
-import { getEntityType, getCountOfTypes } from '../helpers';
+import { getEntityByType, getCountOfTypes } from '../helpers';
 
 const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlights }) => (
   <Popup
@@ -15,7 +15,7 @@ const Annotation = ({ children, showFeedback, isPending, handleFeedback, highlig
         <List.Item key={feedbackId}>
           <List.Content>
             <List.Header>
-              <span style={{ color: getEntityType(type).color }}>{text} </span>
+              <span style={{ color: getEntityByType(type).color }}>{text} </span>
               <a href={link} target="_blank">
                 <Icon name="external" />
               </a>

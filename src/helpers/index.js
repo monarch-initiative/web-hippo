@@ -51,7 +51,7 @@ export const itemsToOptionsArray = (items, getTypeStyle) =>
     }))
     : []);
 
-export const getEntityType = type => ENTITIES.find(entity => entity.type === type);
+export const getEntityByType = type => ENTITIES.find(entity => entity.type === type);
 
 export const getCountOfTypes = (highlights) => {
   if (!Array.isArray(highlights) || highlights.length === 0) return 0;
@@ -60,3 +60,6 @@ export const getCountOfTypes = (highlights) => {
 };
 
 export const getItemById = (items, id) => items.find(item => item.id === id);
+
+export const findFirstEntityIndexOfItems = filterItems =>
+  ENTITIES.findIndex(entity => filterItems.some(filterItem => filterItem.type === entity.type));
