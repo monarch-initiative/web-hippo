@@ -16,7 +16,7 @@ export default function PublicationItem({
   pmid,
 }) {
   return (
-    <Segment style={{ marginBottom: 40 }}>
+    <Segment style={{ marginBottom: 0 }}>
       <PublicationDate datePublished={datePublished} />
       <JournalInfo publication={publication} />
       <Header>{articleTitle}</Header>

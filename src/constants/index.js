@@ -59,3 +59,7 @@ export const ENTITIES = [
     color: 'green',
   },
 ];
+
+export const styles = {
+  clickable: { cursor: 'pointer' },
+};

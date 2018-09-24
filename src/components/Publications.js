@@ -1,10 +1,10 @@
 import React from 'react';
-import PublicationItem from './PublicationItem';
+import PublicationItemContainer from '../containers/PublicationItemContainer';
 
 export default function Publications({ publicationItems }) {
   return (
     <div>
-      {publicationItems.map(item => <PublicationItem key={item.pmid} {...item} />)}
+      {publicationItems.map(item => <PublicationItemContainer key={item.pmid} {...item} />)}
     </div>
   );
 }

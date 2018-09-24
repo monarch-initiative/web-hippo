@@ -63,3 +63,26 @@ export const getItemById = (items, id) => items.find(item => item.id === id);
 
 export const findFirstEntityIndexOfItems = filterItems =>
   ENTITIES.findIndex(entity => filterItems.some(filterItem => filterItem.type === entity.type));
+
+export const groupByFilters = (list) => {
+  const map = new Map();
+  list.forEach((item) => {
+    item.highlights.forEach((hl) => {
+      const key = getEntityByType(hl.type);
+      const collection = map.get(key);
+      if (!collection) {
+        map.set(key, [hl.id]);
+      } else {
+        collection.push(hl.id);
+      }
+    });
+  });
+  const result = [];
+  map.forEach((v, k) => {
+    result.push({
+      annotation: k,
+      count: Array.from(new Set(v)).length,
+    });
+  });
+  return result.sort((a, b) => a.annotation.type.localeCompare(b.annotation.type));
+};
