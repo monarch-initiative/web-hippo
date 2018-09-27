@@ -33,7 +33,7 @@
     "styled-components": "^2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:9080 react-scripts start",
+    "start": "REACT_APP_BASE_URL=https://phenomics-dev.kccg.garvan.org.au/search-engine react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
