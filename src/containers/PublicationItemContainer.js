@@ -4,13 +4,11 @@ import { Sidebar, Segment, Menu, Label } from 'semantic-ui-react';
 
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import * as feedbackSelectors from '../selectors/feedback';
 import toJS from '../helpers/toJS';
 import PublicationItem from '../components/PublicationItem';
 import GeoData from '../components/GeoData';
-
+import AnnotationStatsContainer from '../containers/AnnotationStatsContainer';
 import { styles } from '../constants';
-import { groupByFilters } from '../helpers';
 
 class PublicationItemContainer extends Component {
   state = {
@@ -43,34 +41,11 @@ class PublicationItemContainer extends Component {
             direction="top"
           >
             <Menu.Item>
-              <div
-                style={{
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                }}
-              >
-                <Label
-                  color={this.props.linkedGeoData.length === 0 ? 'grey' : 'blue'}
-                  attached="top right"
-                  style={styles.clickable}
-                  onClick={this.handleButtonClick}
-                  icon={this.state.icon}
-                />
-                <Label attached="top left" size="medium" paddingBottom={30} color="grey">
-                  Annotation Counts
-                </Label>
-                {groupByFilters(this.props.annotations).map(annotation => (
-                  <Label
-                    circular
-                    size={'huge'}
-                    key={annotation.annotation.type}
-                    basic
-                    color={annotation.annotation.color}
-                  >
-                    {annotation.count}
-                  </Label>
-                ))}
-              </div>
+              <AnnotationStatsContainer
+                {...this.props}
+                downButtonIcon={this.state.icon}
+                downButtonAction={this.handleButtonClick}
+              />
             </Menu.Item>
             <GeoData {...this.props} />
           </Sidebar>
@@ -92,10 +67,7 @@ class PublicationItemContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isPending: feedbackSelectors.isPending(state),
-  isError: feedbackSelectors.isError(state),
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...actions }, dispatch);
 

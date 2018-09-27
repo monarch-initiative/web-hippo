@@ -13,20 +13,28 @@ export default function GeoData({ linkedGeoData }) {
             paddingBottom: 10,
           }}
         >
-          <Label attached="top left" size="medium" color="grey" paddingTop={10}>
+          <Label attached="top left" size="medium" color="grey">
             Linked GEO Records:
           </Label>
         </div>
         <Segment.Group>
           {linkedGeoData.map(linkItem => (
-            <Segment textAlign="left">
-              <Label.Group>
-                <Label as="a" href={linkItem.link} target="_blank" padding>
+            <Segment textAlign="left" key={linkItem.uid}>
+              <span>
+                <Label as="a" href={linkItem.link} target="_blank">
                   {linkItem.uid}
-                  <Label.Detail>{linkItem.samplesCount}</Label.Detail>
                 </Label>
-                {linkItem.title}
-              </Label.Group>
+              </span>
+              <span> {linkItem.title}</span>
+              <span
+                style={{
+                  justifyContent: 'right',
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                }}
+              >
+                <Label circular>{linkItem.samplesCount}</Label>
+              </span>
             </Segment>
           ))}
         </Segment.Group>

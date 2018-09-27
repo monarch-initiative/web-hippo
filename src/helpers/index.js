@@ -86,3 +86,17 @@ export const groupByFilters = (list) => {
   });
   return result.sort((a, b) => a.annotation.type.localeCompare(b.annotation.type));
 };
+
+export const getAnnotationStatsDetails = (type, list) => {
+  const result = [];
+  const seen = {};
+  list.forEach((item) => {
+    item.highlights.forEach((hl) => {
+      if (hl.type === type && !seen[hl.id]) {
+        seen[hl.id] = true;
+        result.push({ id: hl.id, text: hl.text, link: hl.link });
+      }
+    });
+  });
+  return Array.from(new Set(result));
+};
